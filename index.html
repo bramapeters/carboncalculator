@@ -1,16 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <title>Carbon Calculators</title>
-        <meta name="viewport" content="width=device-width"/>
+        <title>Carbon Footprint Calculator</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <script src="https://unpkg.com/jquery"></script>
         <script src="https://surveyjs.azureedge.net/1.8.12/survey.jquery.min.js"></script>
         <link rel="stylesheet" href="https://unpkg.com/bootstrap@3.3.7/dist/css/bootstrap.min.css">
-        <link rel="stylesheet" href="./index.css">
+        <link rel="stylesheet" type="text/css" href="main.css" />
     </head>
     <body>
+    <header class="bg-primary text-white">
+        <div class="container text-center">
+            <h1>0HM170 - Carbon Calculator</h1>
+            <p class="lead">Welcome to our newly developed Carbon Footprint Calculator</p>
+        </div>
+    </header>
         <div id="surveyElement" style="display:inline-block;width:100%;"></div>
         <div id="surveyResult"></div>
         <script type="text/javascript" src="./index.js"></script>
     </body>
+    <footer id="footer" class="py-5 bg-dark">
+        <div class="container">
+            <p class="m-0 text-center text-white">Copyright &copy; Dennis Arreman, Yanyu Zheng, Pam Philippens, Bram Peters</p>
+        </div>
+    </footer>
 </html>
