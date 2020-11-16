@@ -269,10 +269,16 @@ survey
     .onComplete
     .add(function (result) {
         var country = result.getValue("country");
+        calcScore(country);
         document
             .querySelector('#surveyResult')
             .textContent = "Result JSON:\n" + JSON.stringify(result.data, null, 3) + country;
     });
+
+function calcScore(country){
+    var wnd = window.open("about:blank", "", "_blank");
+    wnd.document.write(country);
+}
 
 $("#surveyElement").Survey({model: survey});
 
