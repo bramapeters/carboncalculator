@@ -24,6 +24,10 @@ var json = {
             //"navigationDescription": "...",
             "elements": [
                 {
+                    type: "html",
+                    html: "You are about to take part in an experiment on carbon footprint calculators." +
+                        " <br/> Before you proceed, please first fill in the demographic questions on this page."
+                }, {
                     type: "dropdown",
                     name: "country",
                     title: "Select your country...",
