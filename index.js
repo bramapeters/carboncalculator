@@ -84,19 +84,19 @@ var json = {
             questions: [
                 {
                     "type": "bootstrapslider",
-                    "name": "Question 4",
+                    "name": "question4",
                     "step": 50,
                     "rangeMin": 100,
                     "rangeMax": 1000
                 }, {
                     "type": "bootstrapslider",
-                    "name": "Question 5",
+                    "name": "question5",
                     "step": 50,
                     "rangeMin": 100,
                     "rangeMax": 1000
                 }, {
                     "type": "bootstrapslider",
-                    "name": "Question 6",
+                    "name": "question6",
                     "step": 50,
                     "rangeMin": 100,
                     "rangeMax": 1000
@@ -129,38 +129,36 @@ var json = {
             questions: [
                 {
                     "type": "bootstrapslider",
-                    "name": "Question 10",
+                    "name": "question10",
                     "step": 50,
                     "rangeMin": 100,
                     "rangeMax": 1000
                 }, {
                     "type": "bootstrapslider",
-                    "name": "Question 11",
+                    "name": "question11",
                     "step": 50,
                     "rangeMin": 100,
                     "rangeMax": 1000
                 }, {
                     "type": "bootstrapslider",
-                    "name": "Question 12",
+                    "name": "question12",
                     "step": 50,
                     "rangeMin": 100,
                     "rangeMax": 1000
                 },
             ]
         }, {
-            "elements": [
+        var: score = question4,
+            questions: [
                 {
-                    "type": "image",
-                    "name": "banner",
-                    "imageLink": "https://c.files.bbci.co.uk/1305E/production/_112381977_carbon_footprint_640-nc.png",
-                    "position": "center",
-                    "imageWidth": "500px",
-                    "imageHeight": "300px"
+                    type: "html",
+                    html: "<h4>Your level of education is {education}"
                 }
             ]
         }
     ],
-    completedHtml: "<h4>You have answered correctly <b>{correctedAnswers}</b> questions from <b>{questionCount}</b>.</h4>"
+    completedHtml: "<h4>You have answered correctly <b>{correctedAnswers}</b> questions from <b>{questionCount}</b>.</h4>",
+    completedHtml: "<h4>Your level of education is {education}"
 };
 
 window.survey = new Survey.Model(json);
