@@ -4,65 +4,62 @@ Survey
 Survey.defaultBootstrapCss.navigationButton = "btn btn-green";
 
 var json = {
-    title: "Carbon Calculators",
-    showProgressBar: "bottom",
+    //title: "Carbon Calculators",
+    //showProgressBar: "top",
     //showTimerPanel: "top",
     //maxTimeToFinishPage: 10,
     //maxTimeToFinish: 25,
     firstPageIsStarted: true,
     startSurveyText: "Next",
+
     pages: [
         {
             questions: [
                 {
                     type: "html",
-                    html: "You are about to take part in an experiment on carbon footprint calculators. <br/> Before you proceed, please first fill in the demographic questions on the next page."
+                    html: "You are about to take part in an experiment on carbon footprint calculators." +
+                        " <br/> Before you proceed, please first fill in the demographic questions on the next page."
                 }
             ]
         }, {
-          "questions": [
-              {
-                  "name": "name",
-                  "type": "text",
-                  "title": "Please enter your name:",
-                  "placeHolder": "name",
-                  "isRequired": true
-              }, {
-                  "name": "birthdate",
-                  "type": "text",
-                  "inputType": "date",
-                  "title": "Your birthdate:",
-                  "isRequired": true
-              }, {
-                  "name": "email",
-                  "type": "text",
-                  "inputType": "email",
-                  "title": "Your e-mail:",
-                  "placeHolder": "jon.snow@nightwatch.org",
-                  "isRequired": true,
-                  "validators": [
-                      {
-                          "type": "email"
-                      }
-                  ]
-              }
-          ]
-        }, {
             questions: [
                 {
+                    type: "dropdown",
+                    name: "country",
+                    title: "Select the country...",
+                    isRequired: true,
+                    choicesByUrl: {
+                        url: "https://restcountries.eu/rest/v2/all",
+                        valueName: "name"
+                    }
+                }, {
+                    "name": "birthdate",
+                    "type": "text",
+                    "inputType": "date",
+                    "title": "Your birthdate:",
+                    "isRequired": true
+                }, {
                     type: "radiogroup",
-                    name: "civilwar",
-                    title: "When was the Civil War?",
+                    name: "education",
+                    title: "Education (highest degree completed)",
+                    isRequired: true,
+                    colCount: 4,
                     choices: [
-                        "1750-1800", "1800-1850", "1850-1900", "1900-1950", "after 1950"
-                    ],
-                    correctAnswer: "1850-1900"
+                        "Graduated high school",
+                        "Some college, no degree",
+                        "Associate degree",
+                        "Bachelor's degree",
+                        "Post-graduate degree",
+                        "Post-doctoral degree",
+                        "Doctoral degree",
+                        "Professorship",
+                        "Other"
+                    ]
                 }
             ]
         }, {
             questions: [
                 {
-<<<<<<< HEAD
                     type: "rating",
                     name: "question1",
                     title: "Question 1",
@@ -127,23 +124,10 @@ var json = {
                     minRateDescription: "Not at all",
                     maxRateDescription: "Completely"
                 },
-=======
-                    type: "radiogroup",
-                    name: "libertyordeath",
-                    title: "Who said 'Give me liberty or give me death?'",
-                    choicesOrder: "random",
-                    choices: [
-                        "John Hancock", "James Madison", "Patrick Henry", "Samuel Adams"
-                    ],
-                    correctAnswer: "Patrick Henry"
-                }
->>>>>>> parent of a5fb99f... First set of 4 questions and final page with HTML image
             ]
         }, {
-            maxTimeToFinish: 15,
             questions: [
                 {
-<<<<<<< HEAD
                     "type": "bootstrapslider",
                     "name": "Question 10",
                     "step": 50,
@@ -166,27 +150,12 @@ var json = {
         }, {
             "elements": [
                 {
-<<<<<<< HEAD
-                    type: "html",
-                    html: "<h4>Your level of education is {education}"
-=======
-                    type: "radiogroup",
-                    name: "magnacarta",
-                    title: "What is the Magna Carta?",
-                    choicesOrder: "random",
-                    choices: [
-                        "The foundation of the British parliamentary system", "The Great Seal of the monarchs of England", "The French Declaration of the Rights of Man", "The charter signed by the Pilgrims on the Mayflower"
-                    ],
-                    correctAnswer: "The foundation of the British parliamentary system"
->>>>>>> parent of a5fb99f... First set of 4 questions and final page with HTML image
-=======
                     "type": "image",
                     "name": "banner",
                     "imageLink": "https://c.files.bbci.co.uk/1305E/production/_112381977_carbon_footprint_640-nc.png",
                     "position": "center",
                     "imageWidth": "500px",
                     "imageHeight": "300px"
->>>>>>> parent of 7f488b7... Revert change
                 }
             ]
         }
