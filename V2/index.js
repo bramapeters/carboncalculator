@@ -172,7 +172,7 @@ var json = {
                 }, {
                     type: "radiogroup",
                     name: "car_electric",
-                    visibleIf:"{car_have}='Yes'",
+                    visibleIf: "{car_have}='Yes'",
                     title: "Is it an electric car?",
                     isRequired: true,
                     choices: [
@@ -258,13 +258,6 @@ var json = {
                         "Usually new clothes"
                     ]
                 },
-
-            ]
-        }, {
-            "name": "page7",
-            "navigationTitle": "Result",
-            //"navigationDescription": "Status of form",
-            "elements": [
             ]
         }
     ]
@@ -275,9 +268,10 @@ window.survey = new Survey.Model(json);
 survey
     .onComplete
     .add(function (result) {
+        var country = result.getValue("country");
         document
             .querySelector('#surveyResult')
-            .textContent = "Result JSON:\n" + JSON.stringify(result.data, null, 3);
+            .textContent = "Result JSON:\n" + JSON.stringify(result.data, null, 3) + country;
     });
 
 $("#surveyElement").Survey({model: survey});
