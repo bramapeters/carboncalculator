@@ -20,8 +20,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="73348964-4db7-4971-b657-f105a30835e2" name="Default Changelist" comment="">
+<<<<<<< HEAD
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/index.js" afterDir="false" />
+=======
+      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
+>>>>>>> parent of a5fb99f... First set of 4 questions and final page with HTML image
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -43,11 +47,11 @@
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\brama\Dropbox\Education\Technische Universiteit, Eindhoven\2. Human-Technology Interaction (MASTER)\Year 2\Quartile 1\0HM170 - HTI Research Project\Website\carboncalculator" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\brama\Dropbox\Education\Technische Universiteit, Eindhoven\2. Human-Technology Interaction (MASTER)\Year 2\Quartile 1\0HM170 - HTI Research Project\Website\carboncalculator\startbootstrap-scrolling-nav-gh-pages" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\brama\Dropbox\Education\Technische Universiteit, Eindhoven\2. Human-Technology Interaction (MASTER)\Year 2\Quartile 1\0HM170 - HTI Research Project\Website\carboncalculator" />
     </key>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -61,6 +65,7 @@
       <workItem from="1604488829771" duration="572000" />
       <workItem from="1604504054069" duration="1212000" />
       <workItem from="1604933953080" duration="2140000" />
+<<<<<<< HEAD
       <workItem from="1604936150939" duration="9773000" />
       <workItem from="1604956796709" duration="16000" />
       <workItem from="1604957099768" duration="572000" />
@@ -70,6 +75,9 @@
       <workItem from="1605092557855" duration="3176000" />
       <workItem from="1605200744032" duration="3522000" />
       <workItem from="1605532818334" duration="632000" />
+=======
+      <workItem from="1604936150939" duration="265000" />
+>>>>>>> parent of a5fb99f... First set of 4 questions and final page with HTML image
     </task>
     <servers />
   </component>
