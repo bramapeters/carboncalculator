@@ -87,19 +87,19 @@ var json = {
             questions: [
                 {
                     "type": "bootstrapslider",
-                    "name": "question4",
+                    "name": "Question 4",
                     "step": 50,
                     "rangeMin": 100,
                     "rangeMax": 1000
                 }, {
                     "type": "bootstrapslider",
-                    "name": "question5",
+                    "name": "Question 5",
                     "step": 50,
                     "rangeMin": 100,
                     "rangeMax": 1000
                 }, {
                     "type": "bootstrapslider",
-                    "name": "question6",
+                    "name": "Question 6",
                     "step": 50,
                     "rangeMin": 100,
                     "rangeMax": 1000
@@ -145,28 +145,28 @@ var json = {
                 {
 <<<<<<< HEAD
                     "type": "bootstrapslider",
-                    "name": "question10",
+                    "name": "Question 10",
                     "step": 50,
                     "rangeMin": 100,
                     "rangeMax": 1000
                 }, {
                     "type": "bootstrapslider",
-                    "name": "question11",
+                    "name": "Question 11",
                     "step": 50,
                     "rangeMin": 100,
                     "rangeMax": 1000
                 }, {
                     "type": "bootstrapslider",
-                    "name": "question12",
+                    "name": "Question 12",
                     "step": 50,
                     "rangeMin": 100,
                     "rangeMax": 1000
                 },
             ]
         }, {
-        var: score = question4,
-            questions: [
+            "elements": [
                 {
+<<<<<<< HEAD
                     type: "html",
                     html: "<h4>Your level of education is {education}"
 =======
@@ -179,12 +179,19 @@ var json = {
                     ],
                     correctAnswer: "The foundation of the British parliamentary system"
 >>>>>>> parent of a5fb99f... First set of 4 questions and final page with HTML image
+=======
+                    "type": "image",
+                    "name": "banner",
+                    "imageLink": "https://c.files.bbci.co.uk/1305E/production/_112381977_carbon_footprint_640-nc.png",
+                    "position": "center",
+                    "imageWidth": "500px",
+                    "imageHeight": "300px"
+>>>>>>> parent of 7f488b7... Revert change
                 }
             ]
         }
     ],
-    completedHtml: "<h4>You have answered correctly <b>{correctedAnswers}</b> questions from <b>{questionCount}</b>.</h4>",
-    completedHtml: "<h4>Your level of education is {education}"
+    completedHtml: "<h4>You have answered correctly <b>{correctedAnswers}</b> questions from <b>{questionCount}</b>.</h4>"
 };
 
 window.survey = new Survey.Model(json);
