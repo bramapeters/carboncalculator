@@ -226,8 +226,7 @@ var json = {
                 }, {
                     type: "dropdown",
                     name: "car_distance",
-                    title: "How far do you travel by car each week?",
-                    visibleIf: "{car_have}='Yes'",
+                    title: "How far do you travel by car each week (even if you don't own a car)? ",
                     isRequired: true,
                     colCount: 0,
                     choices: [
@@ -344,9 +343,57 @@ $("#surveyElement").Survey({model: survey});
 // Calculate carbon footprint score
 function calcScore(country, gender, household_number, household_type, household_heat, household_size, household_electricity, food_meat,
                    food_dairy, food_vegetables, car_have, car_electric, car_distance, train_distance, plane_distance, clothes_amount, clothes_used){
+    var emission_housing
+    var emission_electricity
+    var emission_food
+    var emission_car
+    var emission_train
+    var emission_plane
+    var emission_clothes
+
+    // Calculate household footprint
+    var carbon_footprint_household
+    if (household_type == "Apartment, before 1975"){
+        if (household_heat == "Electricity heating"){
+            carbon_footprint_household = apart_before_elec
+        } else if (household_heat == "Fuel oil heating"){
+            carbon_footprint_household = apart_before_fuel
+        } else if (household_heat == "Gas heating"){
+            carbon_footprint_household = apart_before_gas
+        }
+    } else if (household_type == "Apartment, after 1975"){
+        if (household_heat == "Electricity heating"){
+            carbon_footprint_household = apart_after_elec
+        } else if (household_heat == "Fuel oil heating"){
+            carbon_footprint_household = apart_after_fuel
+        } else if (household_heat == "Gas heating"){
+            carbon_footprint_household = apart_after_fuel
+        }
+    } else if (household_type == "House, before 1975"){
+        if (household_heat == "Electricity heating"){
+            carbon_footprint_household = house_before_elec
+        } else if (household_heat == "Fuel oil heating"){
+            carbon_footprint_household = house_before_fuel
+        } else if (household_heat == "Gas heating"){
+            carbon_footprint_household = house_before_gas
+        }
+    } else if (household_type == "House, after 1975"){
+        if (household_heat == "Electricity heating"){
+            carbon_footprint_household = house_after_elec
+        } else if (household_heat == "Fuel oil heating"){
+            carbon_footprint_household = house_after_fuel
+        } else if (household_heat == "Gas heating"){
+            carbon_footprint_household = house_after_gas
+        }
+    }
+    emission_housing = (carbon_footprint_household * household_size)/household_number
+
+    // Calculate electricity footprint
+
+
+
     var wnd = window.open("about:blank", "", "_blank");
-    wnd.document.write(country, gender, household_number, household_type, household_heat, household_size, household_electricity, food_meat,
-        food_dairy, food_vegetables, car_have, car_electric, car_distance, train_distance, plane_distance, clothes_amount, clothes_used);
+    wnd.document.write("Your household emission is "+ emission_housing + ".");
 }
 
 var navTopEl = document.querySelector("#surveyNavigationTop");
