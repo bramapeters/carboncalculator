@@ -1,3 +1,46 @@
+// Conversion factors households
+var house_after_elec = 20.8
+var house_after_fuel = 62.3
+var house_after_gas = 48.6
+var house_before_elec = 25.2
+var house_before_fuel = 78.1
+var house_before_gas = 60.4
+var apart_after_elec = 18.0
+var apart_after_fuel = 49.7
+var apart_after_gas = 40.8
+var apart_before_elec = 23.2
+var apart_before_fuel = 55.9
+var apart_before_gas = 54.6
+
+// Average electricity use per household
+var elec_avg_1 = 1930
+var elec_avg_2 = 3010
+var elec_avg_3 = 3610
+var elec_avg_4 = 4160
+var elec_avg_5 = 4380
+var elec_emission = 0.4570
+
+// Food conversion factor
+// ....
+
+// Car conversion factor
+// ....
+
+// Train conversion factor
+var train_emission_km = 28.39
+var weeks_per_year = 48
+
+// Plane conversion factor
+var plane_avg_speed = 907
+var plane_emission_km = 175
+var plane_avg_capacity = 275
+
+// Clothes conversion factor
+var clothes_weight = 0.4
+var clothes_emission = 16.5
+var clothes_quarter = 4
+
+// Survey initialization
 Survey
     .StylesManager
     .applyTheme("modern");
@@ -15,6 +58,7 @@ Survey
         isLocalizable: true
     });
 
+// Survey object
 var json = {
     //"title": "Minimum data reporting form – for suspected and probable cases of COVID-19",
     "pages": [
@@ -263,8 +307,10 @@ var json = {
     ]
 };
 
+// Initialize survey object
 window.survey = new Survey.Model(json);
 
+// Do when survey completed
 survey
     .onComplete
     .add(function (result) {
@@ -275,12 +321,13 @@ survey
             .textContent = "Result JSON:\n" + JSON.stringify(result.data, null, 3) + country;
     });
 
+$("#surveyElement").Survey({model: survey});
+
+// Calculate carbon footprint score
 function calcScore(country){
     var wnd = window.open("about:blank", "", "_blank");
     wnd.document.write(country);
 }
-
-$("#surveyElement").Survey({model: survey});
 
 var navTopEl = document.querySelector("#surveyNavigationTop");
 navTopEl.className = "navigationContainer";
