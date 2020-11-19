@@ -345,7 +345,8 @@ $("#surveyElement").Survey({model: survey});
 function calcScore(country, gender, household_number, household_type, household_heat, household_size, household_electricity, food_meat,
                    food_dairy, food_vegetables, car_have, car_electric, car_distance, train_distance, plane_distance, clothes_amount, clothes_used){
     var wnd = window.open("about:blank", "", "_blank");
-    wnd.document.write(country);
+    wnd.document.write(country, gender, household_number, household_type, household_heat, household_size, household_electricity, food_meat,
+        food_dairy, food_vegetables, car_have, car_electric, car_distance, train_distance, plane_distance, clothes_amount, clothes_used);
 }
 
 var navTopEl = document.querySelector("#surveyNavigationTop");
