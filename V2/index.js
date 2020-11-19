@@ -314,8 +314,26 @@ window.survey = new Survey.Model(json);
 survey
     .onComplete
     .add(function (result) {
+        // Get survey input values
         var country = result.getValue("country");
-        calcScore(country);
+        var gender = result.getValue("gender");
+        var household_number = result.getValue("household_number");
+        var household_type = result.getValue("household_type");
+        var household_heat = result.getValue("household_heat");
+        var household_size = result.getValue("household_size");
+        var household_electricity = result.getValue("household_electricity");
+        var food_meat = result.getValue("food_meat");
+        var food_dairy = result.getValue("food_dairy");
+        var food_vegetables = result.getValue("food_vegetables");
+        var car_have = result.getValue("car_have");
+        var car_electric = result.getValue("car_electric");
+        var car_distance = result.getValue("car_distance");
+        var train_distance = result.getValue("train_distance");
+        var plane_distance = result.getValue("plane_distance");
+        var clothes_amount = result.getValue("clothes_amount");
+        var clothes_used = result.getValue("clothes_used");
+        calcScore(country, gender, household_number, household_type, household_heat, household_size, household_electricity, food_meat,
+        food_dairy, food_vegetables, car_have, car_electric, car_distance, train_distance, plane_distance, clothes_amount, clothes_used);
         document
             .querySelector('#surveyResult')
             .textContent = "Result JSON:\n" + JSON.stringify(result.data, null, 3) + country;
@@ -324,7 +342,8 @@ survey
 $("#surveyElement").Survey({model: survey});
 
 // Calculate carbon footprint score
-function calcScore(country){
+function calcScore(country, gender, household_number, household_type, household_heat, household_size, household_electricity, food_meat,
+                   food_dairy, food_vegetables, car_have, car_electric, car_distance, train_distance, plane_distance, clothes_amount, clothes_used){
     var wnd = window.open("about:blank", "", "_blank");
     wnd.document.write(country);
 }
