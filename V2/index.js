@@ -143,21 +143,72 @@ var json = {
                     step: 1,
                     rangeMin: 0,
                     rangeMax: 500,
-                }, {
-                    type: "dropdown",
-                    name: "household_electricity",
-                    title: "Do you think you (your household) use more or less electricity than others?",
-                    isRequired: true,
-                    colCount: 0,
-                    choices: [
-                        "I use less",
-                        "About the same",
-                        "I use more",
-                    ]
                 }
             ]
         }, {
             "name": "page3",
+            "navigationTitle": "Electricity",
+            //"navigationDescription": "Person's info",
+            "elements": [
+                {
+                    type: "dropdown",
+                    name: "electricity_type",
+                    title: "What kind of electricity do you use?",
+                    isRequired: true,
+                    colCount: 0,
+                    choices: [
+                        "Green electricity",
+                        "Grey electricity"
+                    ]
+                },{
+                    "type": "nouislider",
+                    name: "electricity_amount_1",
+                    title: "Do you think your household of 1 uses more or less electricity (kWh) than average? The center value is the average for your household size.",
+                    isRequired: true,
+                    visibleIf: "{household_number}='1'",
+                    step: 1,
+                    rangeMin: 0,
+                    rangeMax: 2*elec_avg_1,
+                },{
+                    type: "nouislider",
+                    name: "electricity_amount_2",
+                    title: "Do you think your household of 2 uses more or less electricity than average? The center value is the average for your household size.",
+                    isRequired: true,
+                    visibleIf: "{household_number}='2'",
+                    step: 1,
+                    rangeMin: 0,
+                    rangeMax: 2*elec_avg_2,
+                },{
+                    type: "nouislider",
+                    name: "electricity_amount_3",
+                    title: "Do you think your household of 3 uses more or less electricity than average? The center value is the average for your household size.",
+                    isRequired: true,
+                    visibleIf: "{household_number}='3'",
+                    step: 1,
+                    rangeMin: 0,
+                    rangeMax: 2*elec_avg_3,
+                },{
+                    type: "nouislider",
+                    name: "electricity_amount_4",
+                    title: "Do you think your household of 4 uses more or less electricity than average? The center value is the average for your household size.",
+                    isRequired: true,
+                    visibleIf: "{household_number}='4'",
+                    step: 1,
+                    rangeMin: 0,
+                    rangeMax: 2*elec_avg_4,
+                },{
+                    type: "nouislider",
+                    name: "electricity_amount_5",
+                    title: "Do you think your household of more than 4 people uses more or less electricity than average? The center value is the average for your household size.",
+                    isRequired: true,
+                    visibleIf: "{household_number}='More'",
+                    step: 1,
+                    rangeMin: 0,
+                    rangeMax: 2*elec_avg_5,
+                }
+            ]
+        }, {
+            "name": "page4",
             "navigationTitle": "Food",
             //"navigationDescription": "Patient symptoms",
             "elements": [
@@ -200,7 +251,7 @@ var json = {
                 },
             ]
         }, {
-            "name": "page4",
+            "name": "page5",
             "navigationTitle": "Travel",
             //"navigationDescription": "Initial sample",
             "elements": [
@@ -224,56 +275,36 @@ var json = {
                     ],
                     colCount: 0
                 }, {
-                    type: "dropdown",
+                    type: "bootstrapslider",
                     name: "car_distance",
-                    title: "How far do you travel by car each week (even if you don't own a car)? ",
+                    title: "How many km do you travel by car each week (even if you don't own a car)? ",
                     isRequired: true,
                     colCount: 0,
-                    choices: [
-                        "0km",
-                        "< 50km",
-                        "50-100km",
-                        "100-150km",
-                        "150-200km",
-                        "200-250km",
-                        "250-300km",
-                        "> 300km"
-                    ]
+                    step: 1,
+                    rangeMin: 0,
+                    rangeMax: 500
                 }, {
-                    type: "dropdown",
+                    type: "bootstrapslider",
                     name: "train_distance",
-                    title: "How far do you travel by train each week?",
+                    title: "How many km do you travel by train each week?",
                     isRequired: true,
                     colCount: 0,
-                    choices: [
-                        "0km",
-                        "< 50km",
-                        "50-100km",
-                        "100-150km",
-                        "150-200km",
-                        "200-250km",
-                        "250-300km",
-                        "> 300km"
-                    ]
+                    step: 1,
+                    rangeMin: 0,
+                    rangeMax: 500
                 }, {
-                    type: "dropdown",
+                    type: "bootstrapslider",
                     name: "plane_distance",
                     title: "How many hours do you travel by plane each year?",
                     isRequired: true,
                     colCount: 0,
-                    choices: [
-                        "0 hours",
-                        "Less than 5 hours",
-                        "5 to 10 hours",
-                        "10 to 15 hours",
-                        "15 to 20 hours",
-                        "20 to 25 hours",
-                        "More than 25 hours"
-                    ]
+                    step: 1,
+                    rangeMin: 0,
+                    rangeMax: 100
                 }
             ]
         }, {
-            "name": "page5",
+            "name": "page6",
             "navigationTitle": "Clothing",
             //"navigationDescription": "Clinical Course",
             "elements": [
@@ -320,7 +351,12 @@ survey
         var household_type = result.getValue("household_type");
         var household_heat = result.getValue("household_heat");
         var household_size = result.getValue("household_size");
-        var household_electricity = result.getValue("household_electricity");
+        var electricity_type = result.getValue("electricity_type");
+        var electricity_amount_1 = result.getValue("electricity_amount_1");
+        var electricity_amount_2 = result.getValue("electricity_amount_2");
+        var electricity_amount_3 = result.getValue("electricity_amount_3");
+        var electricity_amount_4 = result.getValue("electricity_amount_4");
+        var electricity_amount_5 = result.getValue("electricity_amount_5");
         var food_meat = result.getValue("food_meat");
         var food_dairy = result.getValue("food_dairy");
         var food_vegetables = result.getValue("food_vegetables");
@@ -331,18 +367,24 @@ survey
         var plane_distance = result.getValue("plane_distance");
         var clothes_amount = result.getValue("clothes_amount");
         var clothes_used = result.getValue("clothes_used");
-        calcScore(country, gender, household_number, household_type, household_heat, household_size, household_electricity, food_meat,
-        food_dairy, food_vegetables, car_have, car_electric, car_distance, train_distance, plane_distance, clothes_amount, clothes_used);
+        calcScore(country, gender, household_number, household_type, household_heat, household_size, electricity_type,
+            electricity_amount_1, electricity_amount_2,electricity_amount_3,electricity_amount_4,electricity_amount_5,
+            food_meat, food_dairy, food_vegetables, car_have, car_electric, car_distance, train_distance, plane_distance,
+            clothes_amount, clothes_used);
         document
             .querySelector('#surveyResult')
             .textContent = "Result JSON:\n" + JSON.stringify(result.data, null, 3) + country;
+            window.location.href = "result.html";
+
     });
 
 $("#surveyElement").Survey({model: survey});
 
 // Calculate carbon footprint score
-function calcScore(country, gender, household_number, household_type, household_heat, household_size, household_electricity, food_meat,
-                   food_dairy, food_vegetables, car_have, car_electric, car_distance, train_distance, plane_distance, clothes_amount, clothes_used){
+function calcScore(country, gender, household_number, household_type, household_heat, household_size, electricity_type,
+                   electricity_amount_1, electricity_amount_2,electricity_amount_3,electricity_amount_4,electricity_amount_5,
+                   food_meat, food_dairy, food_vegetables, car_have, car_electric, car_distance, train_distance, plane_distance,
+                   clothes_amount, clothes_used){
     var emission_housing
     var emission_electricity
     var emission_food
@@ -387,10 +429,6 @@ function calcScore(country, gender, household_number, household_type, household_
         }
     }
     emission_housing = (carbon_footprint_household * household_size)/household_number
-
-    // Calculate electricity footprint
-
-
 
     var wnd = window.open("about:blank", "", "_blank");
     wnd.document.write("Your household emission is "+ emission_housing + ".");
