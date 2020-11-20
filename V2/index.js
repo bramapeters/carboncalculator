@@ -71,27 +71,27 @@ var json = {
                     type: "html",
                     html: "You are about to take part in an experiment on carbon footprint calculators." +
                         "<br/> Before you proceed, please first fill in the demographic questions on this page."
-                }, {
-                    type: "dropdown",
-                    name: "country",
-                    title: "Select your country...",
-                    isRequired: true,
-                    choicesByUrl: {
-                        url: "https://restcountries.eu/rest/v2/all",
-                        valueName: "name"
-                    }
-                }, {
-                    type: "dropdown",
-                    name: "gender",
-                    title: "What is your gender?",
-                    isRequired: true,
-                    colCount: 0,
-                    choices: [
-                        "Female",
-                        "Male",
-                        "Other"
-                    ]
-                },
+                }//, {
+                    //type: "dropdown",
+                    //name: "country",
+                    //title: "Select your country...",
+                    //isRequired: true,
+                    //choicesByUrl: {
+                        //url: "https://restcountries.eu/rest/v2/all",
+                        //valueName: "name"
+                //    }
+                //}, {
+                    //type: "dropdown",
+                    //name: "gender",
+                    //title: "What is your gender?",
+                    //isRequired: true,
+                    //colCount: 0,
+                    //choices: [
+                        //"Female",
+                        //"Male",
+                        //"Other"
+                    //]
+                //},
             ],
         }, {
             "name": "page2",
@@ -345,8 +345,8 @@ survey
     .onComplete
     .add(function (result) {
         // Get survey input values
-        var country = result.getValue("country");
-        var gender = result.getValue("gender");
+        //var country = result.getValue("country");
+        //var gender = result.getValue("gender");
         var household_number = result.getValue("household_number");
         var household_type = result.getValue("household_type");
         var household_heat = result.getValue("household_heat");
@@ -367,7 +367,7 @@ survey
         var plane_distance = result.getValue("plane_distance");
         var clothes_amount = result.getValue("clothes_amount");
         var clothes_used = result.getValue("clothes_used");
-        calcScore(country, gender, household_number, household_type, household_heat, household_size, electricity_type,
+        calcScore(household_number, household_type, household_heat, household_size, electricity_type,
             electricity_amount_1, electricity_amount_2,electricity_amount_3,electricity_amount_4,electricity_amount_5,
             food_meat, food_dairy, food_vegetables, car_have, car_electric, car_distance, train_distance, plane_distance,
             clothes_amount, clothes_used);
@@ -381,10 +381,10 @@ survey
 $("#surveyElement").Survey({model: survey});
 
 // Calculate carbon footprint score
-function calcScore(country, gender, household_number, household_type, household_heat, household_size, electricity_type,
-                   electricity_amount_1, electricity_amount_2,electricity_amount_3,electricity_amount_4,electricity_amount_5,
-                   food_meat, food_dairy, food_vegetables, car_have, car_electric, car_distance, train_distance, plane_distance,
-                   clothes_amount, clothes_used){
+function calcScore(household_number, household_type, household_heat, household_size, electricity_type, electricity_amount_1,
+                   electricity_amount_2,electricity_amount_3,electricity_amount_4,electricity_amount_5, food_meat, food_dairy,
+                   food_vegetables, car_have, car_electric, car_distance, train_distance, plane_distance, clothes_amount,
+                   clothes_used){
     var emission_housing
     var emission_electricity
     var emission_food
@@ -409,7 +409,7 @@ function calcScore(country, gender, household_number, household_type, household_
         } else if (household_heat == "Fuel oil heating"){
             carbon_footprint_household = apart_after_fuel
         } else if (household_heat == "Gas heating"){
-            carbon_footprint_household = apart_after_fuel
+            carbon_footprint_household = apart_after_gas
         }
     } else if (household_type == "House, before 1975"){
         if (household_heat == "Electricity heating"){
@@ -430,8 +430,31 @@ function calcScore(country, gender, household_number, household_type, household_
     }
     emission_housing = (carbon_footprint_household * household_size)/household_number
 
+    // Calculate electricity footprint
+    var carbon_footprint_electricity
+    var green_or_grey
+    if (household_number == "1"){
+        carbon_footprint_electricity = electricity_amount_1
+    } else if (household_number == "2"){
+        carbon_footprint_electricity = electricity_amount_2
+    } else if (household_number == "3"){
+        carbon_footprint_electricity = electricity_amount_3
+    } else if (household_number == "4"){
+        carbon_footprint_electricity = electricity_amount_4
+    } else if (household_number == "More"){
+        carbon_footprint_electricity = electricity_amount_5
+    }
+    if (electricity_type == "Green electricity"){
+        green_or_grey = 0.4
+    } else {
+        green_or_grey = 1
+    }
+    emission_electricity = (carbon_footprint_electricity*elec_emission*(green_or_grey))/household_number
+
+    // Calculate food consumption footprint
+
     var wnd = window.open("about:blank", "", "_blank");
-    wnd.document.write("Your household emission is "+ emission_housing + ".");
+    wnd.document.write("Your household emission is "+ emission_housing + ". Your " + electricity_type + " emission is " + emission_electricity + " for a household of " + household_number + ".");
 }
 
 var navTopEl = document.querySelector("#surveyNavigationTop");
