@@ -21,7 +21,11 @@ var elec_avg_5 = 4380
 var elec_emission = 0.4570
 
 // Food conversion factor
-// ....
+var food_weight_meat = 0.25
+var food_emission_meat = 17
+var food_weight_dairy = 0.7
+var food_emission_dairy = 6
+var food_quarter = 48
 
 // Car conversion factor
 // ....
@@ -215,25 +219,33 @@ var json = {
                 {
                     type: "dropdown",
                     name: "food_meat",
-                    title: "How often do you eat meat and fish?",
+                    title: "How often do you eat meat or fish per week?",
                     isRequired: true,
                     colCount: 0,
                     choices: [
                         "Never",
-                        "Seldom, 3 times or less per week",
-                        "Sometimes, 4 to 6 times per week",
+                        "Very seldom, once per week",
+                        "Seldom, twice per week",
+                        "Sometimes, three times per week",
+                        "Sometimes, four times per week",
+                        "Regularly, five times per week",
+                        "Very regularly, six times per week",
                         "Daily"
                     ]
                 }, {
                     type: "dropdown",
-                    name: "foot_dairy",
+                    name: "food_dairy",
                     title: "How often do you eat dairy products (milk, cheese, eggs...)?",
                     isRequired: true,
                     colCount: 0,
                     choices: [
                         "Never",
-                        "Seldom, 3 times or less per week",
-                        "Sometimes, 4 to 6 times per week",
+                        "Very seldom, once per week",
+                        "Seldom, twice per week",
+                        "Sometimes, three times per week",
+                        "Sometimes, four times per week",
+                        "Regularly, five times per week",
+                        "Very regularly, six times per week",
                         "Daily"
                     ]
                 }, {
@@ -392,7 +404,8 @@ function calcScore(household_number, household_type, household_heat, household_s
                    clothes_used){
     var emission_housing
     var emission_electricity
-    var emission_food
+    var emission_meat_dairy
+    var emission_vegetables
     var emission_car
     var emission_train
     var emission_plane
@@ -460,7 +473,44 @@ function calcScore(household_number, household_type, household_heat, household_s
     emission_electricity = (carbon_footprint_electricity*elec_emission*(green_or_grey))/household_number
 
     // Calculate food consumption footprint
-    // ...
+    var meatfish_days
+    var dairy_days
+    var vegetables_days
+    if (food_meat == "Never"){
+        meatfish_days = 0
+    } else if (food_meat == "Very seldom, once per week"){
+        meatfish_days = 1
+    } else if (food_meat == "Seldom, twice per week"){
+        meatfish_days = 2
+    } else if (food_meat == "Sometimes, three times per week"){
+        meatfish_days = 3
+    } else if (food_meat == "Sometimes, four times per week"){
+        meatfish_days = 4
+    } else if (food_meat == "Regularly, five times per week"){
+        meatfish_days = 5
+    } else if (food_meat == "Very regularly, six times per week"){
+        meatfish_days = 6
+    } else if (food_meat == "Daily"){
+        meatfish_days = 7
+    }
+    if (food_dairy == "Never"){
+        dairy_days = 0
+    } else if (food_dairy == "Very seldom, once per week"){
+        dairy_days = 1
+    } else if (food_dairy == "Seldom, twice per week"){
+        dairy_days = 2
+    } else if (food_dairy == "Sometimes, three times per week"){
+        dairy_days = 3
+    } else if (food_dairy == "Sometimes, four times per week"){
+        dairy_days = 4
+    } else if (food_dairy == "Regularly, five times per week"){
+        dairy_days = 5
+    } else if (food_dairy == "Very regularly, six times per week"){
+        dairy_days = 6
+    } else if (food_dairy == "Daily"){
+        dairy_days = 7
+    }
+    emission_meat_dairy = ((food_weight_meat*meatfish_days*food_emission_meat)+(food_weight_dairy*dairy_days*food_emission_dairy))*food_quarter
 
     // Calculate travel footprint
     // ...
@@ -497,7 +547,7 @@ function calcScore(household_number, household_type, household_heat, household_s
     }
 
     var wnd = window.open("about:blank", "", "_blank");
-    wnd.document.write("Your household emission is "+ emission_housing + ". Your " + electricity_type + " emission is " + emission_electricity + " for a household of " + household_number + ". Your clothing emission is " + emission_clothes + ".");
+    wnd.document.write("Your household emission is "+ emission_housing + ". Your " + electricity_type + " emission is " + emission_electricity + " for a household of " + household_number + ". Your clothing emission is " + emission_clothes + ". Your meat and dairy emission is " + emission_meat_dairy + ".");
 }
 
 var navTopEl = document.querySelector("#surveyNavigationTop");
