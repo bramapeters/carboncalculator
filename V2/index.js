@@ -37,7 +37,7 @@ var plane_avg_capacity = 275
 
 // Clothes conversion factor
 var clothes_weight = 0.4
-var clothes_emission = 16.5
+var clothes_emission = 14.42
 var clothes_quarter = 4
 
 // Survey initialization
@@ -311,14 +311,19 @@ var json = {
                 {
                     type: "dropdown",
                     name: "clothes_amount",
-                    title: "How often do you buy clothes?",
+                    title: "How often do you buy clothes per quarter (i.e. 3 months)?",
                     isRequired: true,
                     colCount: 0,
                     choices: [
-                        "Only when really in need",
-                        "2-3 pieces per quarter",
-                        "4-6 pieces per quarter",
-                        "More than 6 pieces per quarter"
+                        "1 piece per quarter",
+                        "2 pieces per quarter",
+                        "3 pieces per quarter",
+                        "4 pieces per quarter",
+                        "5 pieces per quarter",
+                        "6 pieces per quarter",
+                        "7 pieces per quarter",
+                        "8 pieces per quarter",
+                        "More than 8 pieces per quarter"
                     ]
                 }, {
                     type: "dropdown",
@@ -428,7 +433,10 @@ function calcScore(household_number, household_type, household_heat, household_s
             carbon_footprint_household = house_after_gas
         }
     }
-    emission_housing = (carbon_footprint_household * household_size)/household_number
+    if (household_number == "More"){
+        household_number = 5
+    }
+        emission_housing = (carbon_footprint_household * household_size)/household_number
 
     // Calculate electricity footprint
     var carbon_footprint_electricity
@@ -441,7 +449,7 @@ function calcScore(household_number, household_type, household_heat, household_s
         carbon_footprint_electricity = electricity_amount_3
     } else if (household_number == "4"){
         carbon_footprint_electricity = electricity_amount_4
-    } else if (household_number == "More"){
+    } else if (household_number == "5"){
         carbon_footprint_electricity = electricity_amount_5
     }
     if (electricity_type == "Green electricity"){
@@ -452,9 +460,44 @@ function calcScore(household_number, household_type, household_heat, household_s
     emission_electricity = (carbon_footprint_electricity*elec_emission*(green_or_grey))/household_number
 
     // Calculate food consumption footprint
+    // ...
+
+    // Calculate travel footprint
+    // ...
+
+    // Calculate clothes footprint
+    // ...
+
+    var clothes_pieces
+    if (clothes_amount == "1 piece per quarter"){
+        clothes_pieces = 1
+    } else if (clothes_amount == "2 pieces per quarter"){
+        clothes_pieces = 2
+    } else if (clothes_amount == "3 pieces per quarter"){
+        clothes_pieces = 3
+    } else if (clothes_amount == "4 pieces per quarter"){
+        clothes_pieces = 4
+    } else if (clothes_amount == "5 pieces per quarter") {
+        clothes_pieces = 5
+    } else if (clothes_amount == "6 pieces per quarter") {
+        clothes_pieces = 6
+    } else if (clothes_amount == "7 pieces per quarter") {
+        clothes_pieces = 7
+    } else if (clothes_amount == "8 pieces per quarter") {
+        clothes_pieces = 8
+    } else if (clothes_amount == "More than 8 pieces per quarter"){
+        clothes_pieces = 9
+    }
+    if (clothes_used == "Usually second-hand clothes"){
+        emission_clothes = 0
+    } else if (clothes_used == "I buy both equally often"){
+        emission_clothes = clothes_weight*clothes_emission*clothes_pieces*clothes_quarter*0.5
+    } else if (clothes_used == "Usually new clothes"){
+        emission_clothes = clothes_weight*clothes_emission*clothes_pieces*clothes_quarter
+    }
 
     var wnd = window.open("about:blank", "", "_blank");
-    wnd.document.write("Your household emission is "+ emission_housing + ". Your " + electricity_type + " emission is " + emission_electricity + " for a household of " + household_number + ".");
+    wnd.document.write("Your household emission is "+ emission_housing + ". Your " + electricity_type + " emission is " + emission_electricity + " for a household of " + household_number + ". Your clothing emission is " + emission_clothes + ".");
 }
 
 var navTopEl = document.querySelector("#surveyNavigationTop");
