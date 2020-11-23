@@ -25,10 +25,11 @@ var food_weight_meat = 0.25
 var food_emission_meat = 17
 var food_weight_dairy = 0.7
 var food_emission_dairy = 6
-var food_quarter = 48
 
 // Car conversion factor
-// ....
+var carbon_emission_diesel = 3.32
+var carbon_emission_petrol = 2.74
+var carbon_emission_electric = 9.5
 
 // Train conversion factor
 var train_emission_km = 28.39
@@ -278,12 +279,22 @@ var json = {
                     colCount: 0
                 }, {
                     type: "radiogroup",
-                    name: "car_electric",
+                    name: "car_type",
                     visibleIf: "{car_have}='Yes'",
-                    title: "Is it an electric car?",
+                    title: "What type of car?",
                     isRequired: true,
                     choices: [
-                        "Yes", "No"
+                        "Electric", "Petrol", "Diesel"
+                    ],
+                    colCount: 0
+                }, {
+                    type: "radiogroup",
+                    name: "car_share",
+                    visibleIf: "{car_have}='Yes'",
+                    title: "Do you mostly drive alone or share your car?",
+                    isRequired: true,
+                    choices: [
+                        "Alone", "Share"
                     ],
                     colCount: 0
                 }, {
@@ -335,7 +346,9 @@ var json = {
                         "6 pieces per quarter",
                         "7 pieces per quarter",
                         "8 pieces per quarter",
-                        "More than 8 pieces per quarter"
+                        "9 pieces per quarter",
+                        "10 pieces per quarter",
+                        "More than 10 pieces per quarter"
                     ]
                 }, {
                     type: "dropdown",
@@ -378,7 +391,8 @@ survey
         var food_dairy = result.getValue("food_dairy");
         var food_vegetables = result.getValue("food_vegetables");
         var car_have = result.getValue("car_have");
-        var car_electric = result.getValue("car_electric");
+        var car_type = result.getValue("car_type");
+        var car_share = result.getValue("car_share")
         var car_distance = result.getValue("car_distance");
         var train_distance = result.getValue("train_distance");
         var plane_distance = result.getValue("plane_distance");
@@ -386,11 +400,11 @@ survey
         var clothes_used = result.getValue("clothes_used");
         calcScore(household_number, household_type, household_heat, household_size, electricity_type,
             electricity_amount_1, electricity_amount_2,electricity_amount_3,electricity_amount_4,electricity_amount_5,
-            food_meat, food_dairy, food_vegetables, car_have, car_electric, car_distance, train_distance, plane_distance,
-            clothes_amount, clothes_used);
+            food_meat, food_dairy, food_vegetables, car_have, car_type, car_share, car_distance, train_distance,
+            plane_distance, clothes_amount, clothes_used);
         document
             .querySelector('#surveyResult')
-            .textContent = "Result JSON:\n" + JSON.stringify(result.data, null, 3) + country;
+            .textContent = "Result JSON:\n" + JSON.stringify(result.data, null, 3);
             window.location.href = "result.html";
 
     });
@@ -400,7 +414,7 @@ $("#surveyElement").Survey({model: survey});
 // Calculate carbon footprint score
 function calcScore(household_number, household_type, household_heat, household_size, electricity_type, electricity_amount_1,
                    electricity_amount_2,electricity_amount_3,electricity_amount_4,electricity_amount_5, food_meat, food_dairy,
-                   food_vegetables, car_have, car_electric, car_distance, train_distance, plane_distance, clothes_amount,
+                   food_vegetables, car_have, car_type, car_share, car_distance, train_distance, plane_distance, clothes_amount,
                    clothes_used){
     var emission_housing
     var emission_electricity
@@ -472,10 +486,9 @@ function calcScore(household_number, household_type, household_heat, household_s
     }
     emission_electricity = (carbon_footprint_electricity*elec_emission*(green_or_grey))/household_number
 
-    // Calculate food consumption footprint
+    // Calculate meat and dairy consumption footprint
     var meatfish_days
     var dairy_days
-    var vegetables_days
     if (food_meat == "Never"){
         meatfish_days = 0
     } else if (food_meat == "Very seldom, once per week"){
@@ -510,14 +523,38 @@ function calcScore(household_number, household_type, household_heat, household_s
     } else if (food_dairy == "Daily"){
         dairy_days = 7
     }
-    emission_meat_dairy = ((food_weight_meat*meatfish_days*food_emission_meat)+(food_weight_dairy*dairy_days*food_emission_dairy))*food_quarter
+    emission_meat_dairy = ((food_weight_meat*meatfish_days*food_emission_meat)+(food_weight_dairy*dairy_days*food_emission_dairy))*weeks_per_year
 
-    // Calculate travel footprint
+    // Calculate vegetable consumption footprint
+    // ...
+
+    // Calculate car travel footprint
+    var emission_car
+    var car_share_boolean
+    if (car_share == "Alone"){
+        car_share_boolean = 1
+    } else if (car_share == "Share") {
+        car_share_boolean = 0.5
+    } else {
+        car_share_boolean = 0.75
+    }
+    if (car_type == "Electric"){
+        emission_car = (car_distance/100)*carbon_emission_electric*weeks_per_year*car_share_boolean
+    } else if (car_type == "Petrol"){
+        emission_car = (car_distance*(6.5/100))*carbon_emission_petrol*weeks_per_year*car_share_boolean
+    } else if (car_type == "Diesel"){
+        emission_car = (car_distance*(5/100))*carbon_emission_diesel*weeks_per_year*car_share_boolean
+    } else {
+        emission_car = (((car_distance/100)*carbon_emission_electric*weeks_per_year)+((car_distance*(6.5/100))*carbon_emission_petrol*weeks_per_year)+(emission_car = (car_distance*(5/100))*carbon_emission_diesel*weeks_per_year))*(1/3)*car_share_boolean
+    }
+
+    // Calculate public transport footprint
+    // ...
+
+    // Calculate plane travel footprint
     // ...
 
     // Calculate clothes footprint
-    // ...
-
     var clothes_pieces
     if (clothes_amount == "1 piece per quarter"){
         clothes_pieces = 1
@@ -535,8 +572,12 @@ function calcScore(household_number, household_type, household_heat, household_s
         clothes_pieces = 7
     } else if (clothes_amount == "8 pieces per quarter") {
         clothes_pieces = 8
-    } else if (clothes_amount == "More than 8 pieces per quarter"){
+    } else if (clothes_amount == "9 pieces per quarter") {
         clothes_pieces = 9
+    } else if (clothes_amount == "10 pieces per quarter") {
+        clothes_pieces = 10
+    } else if (clothes_amount == "More than 10 pieces per quarter"){
+        clothes_pieces = 11
     }
     if (clothes_used == "Usually second-hand clothes"){
         emission_clothes = 0
@@ -547,7 +588,7 @@ function calcScore(household_number, household_type, household_heat, household_s
     }
 
     var wnd = window.open("about:blank", "", "_blank");
-    wnd.document.write("Your household emission is "+ emission_housing + ". Your " + electricity_type + " emission is " + emission_electricity + " for a household of " + household_number + ". Your clothing emission is " + emission_clothes + ". Your meat and dairy emission is " + emission_meat_dairy + ".");
+    wnd.document.write("Your household emission is "+ emission_housing + ". Your " + electricity_type + " emission is " + emission_electricity + " for a household of " + household_number + ". Your clothing emission is " + emission_clothes + ". Your meat and dairy emission is " + emission_meat_dairy + ". Your car travel emission is " + emission_car + ".");
 }
 
 var navTopEl = document.querySelector("#surveyNavigationTop");
