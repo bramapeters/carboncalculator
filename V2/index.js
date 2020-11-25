@@ -76,32 +76,11 @@ var json = {
                     type: "html",
                     html: "You are about to take part in an experiment on carbon footprint calculators." +
                         "<br/> Before you proceed, please first fill in the demographic questions on this page."
-                }//, {
-                    //type: "dropdown",
-                    //name: "country",
-                    //title: "Select your country...",
-                    //isRequired: true,
-                    //choicesByUrl: {
-                        //url: "https://restcountries.eu/rest/v2/all",
-                        //valueName: "name"
-                //    }
-                //}, {
-                    //type: "dropdown",
-                    //name: "gender",
-                    //title: "What is your gender?",
-                    //isRequired: true,
-                    //colCount: 0,
-                    //choices: [
-                        //"Female",
-                        //"Male",
-                        //"Other"
-                    //]
-                //},
+                }
             ],
         }, {
             "name": "page2",
             "navigationTitle": "Household",
-            //"navigationDescription": "Person's info",
             "elements": [
                 {
                     type: "dropdown",
@@ -153,7 +132,6 @@ var json = {
         }, {
             "name": "page3",
             "navigationTitle": "Electricity",
-            //"navigationDescription": "Person's info",
             "elements": [
                 {
                     type: "dropdown",
@@ -204,7 +182,7 @@ var json = {
                 },{
                     type: "nouislider",
                     name: "electricity_amount_5",
-                    title: "Do you think your household of more than 4 people uses more or less electricity than average? The center value is the average for your household size.",
+                    title: "Do you think your household of more than 4 people uses more or less electricity than average (kWh)? The center value is the average for your household size.",
                     isRequired: true,
                     visibleIf: "{household_number}='More'",
                     step: 1,
@@ -215,7 +193,6 @@ var json = {
         }, {
             "name": "page4",
             "navigationTitle": "Food",
-            //"navigationDescription": "Patient symptoms",
             "elements": [
                 {
                     type: "dropdown",
@@ -249,39 +226,25 @@ var json = {
                         "Very regularly, six times per week",
                         "Daily"
                     ]
-                }, {
-                    type: "dropdown",
-                    name: "food_vegetables",
-                    title: "How often do you eat fruit and vegetables?",
-                    isRequired: true,
-                    colCount: 0,
-                    choices: [
-                        "Never",
-                        "Seldom, 3 times or less per week",
-                        "Sometimes, 4 to 6 times per week",
-                        "Daily"
-                    ]
-                },
+                }
             ]
         }, {
             "name": "page5",
             "navigationTitle": "Travel",
-            //"navigationDescription": "Initial sample",
             "elements": [
                 {
-                    type: "radiogroup",
-                    name: "car_have",
-                    title: "Do you have a car?",
+                    type: "bootstrapslider",
+                    name: "car_distance",
+                    title: "How many km do you travel by car each week (i.e. even if you don't own a car)? ",
                     isRequired: true,
-                    choices: [
-                        "Yes", "No"
-                    ],
-                    colCount: 0
+                    colCount: 0,
+                    step: 1,
+                    rangeMin: 0,
+                    rangeMax: 500
                 }, {
                     type: "radiogroup",
                     name: "car_type",
-                    visibleIf: "{car_have}='Yes'",
-                    title: "What type of car?",
+                    title: "What type of car do you normally drive?",
                     isRequired: true,
                     choices: [
                         "Electric", "Petrol", "Diesel"
@@ -290,7 +253,6 @@ var json = {
                 }, {
                     type: "radiogroup",
                     name: "car_share",
-                    visibleIf: "{car_have}='Yes'",
                     title: "Do you mostly drive alone or share your car?",
                     isRequired: true,
                     choices: [
@@ -299,8 +261,8 @@ var json = {
                     colCount: 0
                 }, {
                     type: "bootstrapslider",
-                    name: "car_distance",
-                    title: "How many km do you travel by car each week (even if you don't own a car)? ",
+                    name: "train_distance",
+                    title: "How many km do you travel by train each week?",
                     isRequired: true,
                     colCount: 0,
                     step: 1,
@@ -308,8 +270,8 @@ var json = {
                     rangeMax: 500
                 }, {
                     type: "bootstrapslider",
-                    name: "train_distance",
-                    title: "How many km do you travel by train each week?",
+                    name: "publictransport_distance",
+                    title: "How many km do you travel by any other means of public transportation each week (e.g. bus, tram, metro)?",
                     isRequired: true,
                     colCount: 0,
                     step: 1,
@@ -329,7 +291,6 @@ var json = {
         }, {
             "name": "page6",
             "navigationTitle": "Clothing",
-            //"navigationDescription": "Clinical Course",
             "elements": [
                 {
                     type: "dropdown",
@@ -375,8 +336,6 @@ survey
     .onComplete
     .add(function (result) {
         // Get survey input values
-        //var country = result.getValue("country");
-        //var gender = result.getValue("gender");
         var household_number = result.getValue("household_number");
         var household_type = result.getValue("household_type");
         var household_heat = result.getValue("household_heat");
@@ -390,17 +349,17 @@ survey
         var food_meat = result.getValue("food_meat");
         var food_dairy = result.getValue("food_dairy");
         var food_vegetables = result.getValue("food_vegetables");
-        var car_have = result.getValue("car_have");
         var car_type = result.getValue("car_type");
         var car_share = result.getValue("car_share")
         var car_distance = result.getValue("car_distance");
         var train_distance = result.getValue("train_distance");
+        var publictransport_distance = result.getValue("publictransport_distance")
         var plane_distance = result.getValue("plane_distance");
         var clothes_amount = result.getValue("clothes_amount");
         var clothes_used = result.getValue("clothes_used");
         calcScore(household_number, household_type, household_heat, household_size, electricity_type,
             electricity_amount_1, electricity_amount_2,electricity_amount_3,electricity_amount_4,electricity_amount_5,
-            food_meat, food_dairy, food_vegetables, car_have, car_type, car_share, car_distance, train_distance,
+            food_meat, food_dairy, food_vegetables, car_type, car_share, car_distance, train_distance, publictransport_distance,
             plane_distance, clothes_amount, clothes_used);
         document
             .querySelector('#surveyResult')
@@ -414,16 +373,16 @@ $("#surveyElement").Survey({model: survey});
 // Calculate carbon footprint score
 function calcScore(household_number, household_type, household_heat, household_size, electricity_type, electricity_amount_1,
                    electricity_amount_2,electricity_amount_3,electricity_amount_4,electricity_amount_5, food_meat, food_dairy,
-                   food_vegetables, car_have, car_type, car_share, car_distance, train_distance, plane_distance, clothes_amount,
-                   clothes_used){
-    var emission_housing
-    var emission_electricity
-    var emission_meat_dairy
-    var emission_vegetables
-    var emission_car
-    var emission_train
-    var emission_plane
-    var emission_clothes
+                   food_vegetables, car_type, car_share, car_distance, train_distance, publictransport_distance, plane_distance,
+                   clothes_amount, clothes_used){
+    var emission_housing = 0
+    var emission_electricity = 0
+    var emission_meat_dairy = 0
+    var emission_car = 0
+    var emission_public_transport = 0
+    var emission_plane = 0
+    var emission_clothes = 0
+    var emission_total = 0
 
     // Calculate household footprint
     var carbon_footprint_household
@@ -525,18 +484,12 @@ function calcScore(household_number, household_type, household_heat, household_s
     }
     emission_meat_dairy = ((food_weight_meat*meatfish_days*food_emission_meat)+(food_weight_dairy*dairy_days*food_emission_dairy))*weeks_per_year
 
-    // Calculate vegetable consumption footprint
-    // ...
-
     // Calculate car travel footprint
-    var emission_car
     var car_share_boolean
     if (car_share == "Alone"){
         car_share_boolean = 1
     } else if (car_share == "Share") {
         car_share_boolean = 0.5
-    } else {
-        car_share_boolean = 0.75
     }
     if (car_type == "Electric"){
         emission_car = (car_distance/100)*carbon_emission_electric*weeks_per_year*car_share_boolean
@@ -544,8 +497,6 @@ function calcScore(household_number, household_type, household_heat, household_s
         emission_car = (car_distance*(6.5/100))*carbon_emission_petrol*weeks_per_year*car_share_boolean
     } else if (car_type == "Diesel"){
         emission_car = (car_distance*(5/100))*carbon_emission_diesel*weeks_per_year*car_share_boolean
-    } else {
-        emission_car = (((car_distance/100)*carbon_emission_electric*weeks_per_year)+((car_distance*(6.5/100))*carbon_emission_petrol*weeks_per_year)+(emission_car = (car_distance*(5/100))*carbon_emission_diesel*weeks_per_year))*(1/3)*car_share_boolean
     }
 
     // Calculate public transport footprint
@@ -587,8 +538,11 @@ function calcScore(household_number, household_type, household_heat, household_s
         emission_clothes = clothes_weight*clothes_emission*clothes_pieces*clothes_quarter
     }
 
+    // Calculate total emission footprint
+    emission_total = emission_housing + emission_electricity + emission_meat_dairy + emission_car + emission_public_transport + emission_plane + emission_clothes
+
     var wnd = window.open("about:blank", "", "_blank");
-    wnd.document.write("Your household emission is "+ emission_housing + ". Your " + electricity_type + " emission is " + emission_electricity + " for a household of " + household_number + ". Your clothing emission is " + emission_clothes + ". Your meat and dairy emission is " + emission_meat_dairy + ". Your car travel emission is " + emission_car + ".");
+    wnd.document.write("Your household emission is "+ emission_housing + ". Your " + electricity_type + " emission is " + emission_electricity + " for a household of " + household_number + ". Your clothing emission is " + emission_clothes + ". Your meat and dairy emission is " + emission_meat_dairy + ". Your car travel emission is " + emission_car + ". Your total emission is " + emission_total + ".");
 }
 
 var navTopEl = document.querySelector("#surveyNavigationTop");
