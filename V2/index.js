@@ -31,9 +31,9 @@ var carbon_emission_diesel = 3.32
 var carbon_emission_petrol = 2.74
 var carbon_emission_electric = 9.5
 
-// Train conversion factor
-var train_emission_km = 28.39
+// Public transport conversion factor
 var weeks_per_year = 48
+var publictransport_emission = 0.036
 
 // Plane conversion factor
 var plane_avg_speed = 907
@@ -500,7 +500,7 @@ function calcScore(household_number, household_type, household_heat, household_s
     }
 
     // Calculate public transport footprint
-    // ...
+    emission_public_transport = publictransport_distance * publictransport_emission * weeks_per_year
 
     // Calculate plane travel footprint
     // ...
@@ -542,7 +542,7 @@ function calcScore(household_number, household_type, household_heat, household_s
     emission_total = emission_housing + emission_electricity + emission_meat_dairy + emission_car + emission_public_transport + emission_plane + emission_clothes
 
     var wnd = window.open("about:blank", "", "_blank");
-    wnd.document.write("Your household emission is "+ emission_housing + ". Your " + electricity_type + " emission is " + emission_electricity + " for a household of " + household_number + ". Your clothing emission is " + emission_clothes + ". Your meat and dairy emission is " + emission_meat_dairy + ". Your car travel emission is " + emission_car + ". Your total emission is " + emission_total + ".");
+    wnd.document.write("Your household emission is "+ emission_housing + ". Your " + electricity_type + " emission is " + emission_electricity + " for a household of " + household_number + ". Your clothing emission is " + emission_clothes + ". Your meat and dairy emission is " + emission_meat_dairy + ". Your car travel emission is " + emission_car + ". Your public transport emission is " + emission_public_transport + ". Your total emission is " + emission_total + ".");
 }
 
 var navTopEl = document.querySelector("#surveyNavigationTop");
