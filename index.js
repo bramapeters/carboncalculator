@@ -551,7 +551,6 @@ function calcScore(household_number, household_type, household_heat, household_s
 
 // Show visualization function
 function showVisualization(emission_total){
-
     // Hide survey element
     document.getElementById("surveyNavigation").style.display="none";
     document.getElementById("surveyElement").style.display="none";
@@ -576,7 +575,6 @@ function showVisualization(emission_total){
         document.getElementById("verification_code").innerText = "VERIFICATION CODE: " + verification_code
         document.getElementById("visualization_img").src = verification_code + ".jpg";
     }
-
     // Show visualization
     document.getElementById("visualization").style.display="block";
 }
@@ -589,7 +587,7 @@ function copyToClipboard(){
     elem.select();
     document.execCommand('copy');
     document.body.removeChild(elem);
-    window.alert("Your verification code has been copied to your clipboard!");
+    window.alert("Your verification code has been copied to your clipboard! You can now simply paste it elsewhere.");
 
 }
 
