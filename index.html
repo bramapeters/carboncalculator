@@ -20,8 +20,8 @@
     </head>
     <header class="bg-primary text-white" style="background-color:#8dd9ca; box-shadow: 5px 5px #E8E8E8">
         <div class="container text-center" style="margin-bottom:50px">
-            <h1>0HM170 - Carbon Calculator</h1>
-            <p class="lead">Welcome to our newly developed Carbon Footprint Calculator</p>
+            <h1 style="font-family: Segoe Ui">0HM170 - Carbon Calculator</h1>
+            <p style="font-family: Segoe Ui" class="lead">Welcome to our newly developed Carbon Footprint Calculator</p>
         </div>
     </header>
     <body>
@@ -33,18 +33,18 @@
         <script type="text/javascript" src="index.js"></script>
     <div id="visualization" class="polaroid" style="display:none">
         <img id="visualization_img" src="V1_1.jpg" alt="5 Terre" style="width:100%">
-        <div class="text-block">
-            <h4 style="font-size: 10px">VERIFICATION CODE:</h4>
-            <p style="font-size: 10px" id="verification_code">...</p>
+        <div class="text-block" onclick="copyToClipboard()">
+            <h4 style="font-family: Segoe Ui" id="verification_code" style="font-size: 10px">VERIFICATION CODE: ...</h4>
+            <button style="font-family: Segoe Ui; margin-bottom:10px; position: center; background-color: gray; width:100%; padding: 5px; color: white; border: none; font-size:10px" onclick="copyToClipboard()">COPY TO CLIPBOARD</button>
         </div>
         <div style="text-align: center; margin: 15px">
-            <p id="result_text">Your carbon footprint is: .... kg CO2</p>
+            <p style="font-family: Segoe Ui" id="result_text">Your carbon footprint is: .... kg CO2</p>
         </div>
     </div>
     </body>
     <footer id="footer" class="py-5 bg-dark">
         <div>
-            <p class="m-0 text-center text-white">Copyright &copy; Dennis Arreman, Yanyu Zheng, Pam Philippens, Bram Peters</p>
+            <p style="font-family: Segoe Ui" class="m-0 text-center text-white">Copyright &copy; Dennis Arreman, Yanyu Zheng, Pam Philippens, Bram Peters</p>
         </div>
     </footer>
 </html>

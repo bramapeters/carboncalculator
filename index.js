@@ -45,6 +45,9 @@ var clothes_weight = 0.4
 var clothes_emission = 14.42
 var clothes_quarter = 4
 
+// Definining visualization verification code
+var verification_code = "..."
+
 // Survey initialization
 Survey
     .StylesManager
@@ -561,22 +564,33 @@ function showVisualization(emission_total){
     // Randomize for one out of three visualizations
     var random_number = Math.floor(Math.random() * 3) + 1
     if (random_number == 1){
-        document.getElementById("verification_code").innerText = "V1_1"
-        document.getElementById("visualization_img").src = "V1_1.jpg";
+        verification_code = "V1_1"
+        document.getElementById("verification_code").innerText = "VERIFICATION CODE: " + verification_code
+        document.getElementById("visualization_img").src = verification_code + ".jpg";
     } else if (random_number == 2){
-        document.getElementById("verification_code").innerText = "V2_1"
-        document.getElementById("visualization_img").src = "V2_1.jpg";
+        verification_code = "V2_1"
+        document.getElementById("verification_code").innerText = "VERIFICATION CODE: " + verification_code
+        document.getElementById("visualization_img").src = verification_code + ".jpg";
     } else if (random_number == 3){
-        document.getElementById("verification_code").innerText = "V3_1"
-        document.getElementById("visualization_img").src = "V3_1.jpg";
+        verification_code = "V3_1"
+        document.getElementById("verification_code").innerText = "VERIFICATION CODE: " + verification_code
+        document.getElementById("visualization_img").src = verification_code + ".jpg";
     }
 
     // Show visualization
     document.getElementById("visualization").style.display="block";
 }
 
-function randomNumber(min, max) {
-    return Math.random() * (max - min) + min;
+// Click visualization box to copy verification code to clipboard
+function copyToClipboard(){
+    const elem = document.createElement('textarea');
+    elem.value = verification_code;
+    document.body.appendChild(elem);
+    elem.select();
+    document.execCommand('copy');
+    document.body.removeChild(elem);
+    window.alert("Your verification code has been copied to your clipboard!");
+
 }
 
 var navTopEl = document.querySelector("#surveyNavigationTop");
