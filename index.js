@@ -38,7 +38,6 @@ var publictransport_emission = 0.036
 // Plane conversion factor
 var plane_avg_speed = 907
 var plane_emission_km = 175
-var plane_avg_capacity = 275
 
 // Clothes conversion factor
 var clothes_weight = 0.4
@@ -376,14 +375,14 @@ function calcScore(household_number, household_type, household_heat, household_s
                    electricity_amount_2,electricity_amount_3,electricity_amount_4,electricity_amount_5, food_meat, food_dairy,
                    food_vegetables, car_type, car_share, car_distance, train_distance, publictransport_distance, plane_distance,
                    clothes_amount, clothes_used){
-    var emission_housing = 0
-    var emission_electricity = 0
-    var emission_meat_dairy = 0
-    var emission_car = 0
-    var emission_public_transport = 0
-    var emission_plane = 0
-    var emission_clothes = 0
-    var emission_total = 0
+    var emission_housing
+    var emission_electricity
+    var emission_meat_dairy
+    var emission_car
+    var emission_public_transport
+    var emission_plane
+    var emission_clothes
+    var emission_total
 
     // Calculate household footprint
     var carbon_footprint_household
@@ -504,7 +503,7 @@ function calcScore(household_number, household_type, household_heat, household_s
     emission_public_transport = publictransport_distance * publictransport_emission * weeks_per_year
 
     // Calculate plane travel footprint
-    // ...
+    emission_plane = (plane_avg_speed * plane_distance * plane_emission_km) / 1000
 
     // Calculate clothes footprint
     var clothes_pieces
@@ -545,7 +544,7 @@ function calcScore(household_number, household_type, household_heat, household_s
     // Show visualization
     showVisualization(emission_total)
     //var wnd = window.open("about:blank", "", "_blank");
-    //wnd.document.write("Your household emission is "+ emission_housing + ". Your " + electricity_type + " emission is " + emission_electricity + " for a household of " + household_number + ". Your clothing emission is " + emission_clothes + ". Your meat and dairy emission is " + emission_meat_dairy + ". Your car travel emission is " + emission_car + ". Your public transport emission is " + emission_public_transport + ". Your total emission is " + emission_total + ".");
+    //wnd.document.write("Your household emission is "+ emission_housing + ". Your " + electricity_type + " emission is " + emission_electricity + " for a household of " + household_number + ". Your clothing emission is " + emission_clothes + ". Your meat and dairy emission is " + emission_meat_dairy + ". Your car travel emission is " + emission_car + ". Your public transport emission is " + emission_public_transport + ". Your plane travel emission is " + emission_plane + ". Your total emission is " + emission_total + ".");
 }
 
 // Show visualization function
