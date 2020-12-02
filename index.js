@@ -76,7 +76,9 @@ var json = {
             "elements": [
                 {
                     type: "html",
-                    html: "<p style='text-align: center'> You are about to fill in a carbon footprint calculator questionnaire. Based on information you provide about your lifestyle (e.g. eating habits, electricity use, consumer behaviour, etc.) the calculator is able to compute your personal carbon footprint. This is an objective representation of the total amount of greenhouse gas emissions that result from and reflect your personal lifestyle. </p>"
+                    html: "<p style='text-align: center'> You are about to fill in a carbon footprint calculator questionnaire. Based on information you provide about your lifestyle (e.g. eating habits, electricity use, consumer behaviour, etc.) the calculator is able to compute your personal carbon footprint. This is an objective representation of the total amount of greenhouse gas emissions that result from and reflect your personal lifestyle. </p>" +
+                        "<p style='text-align: center'><b>This webpage is displayed properly in desktop browsers only</b></p>"
+
                 }
             ],
         }, {
