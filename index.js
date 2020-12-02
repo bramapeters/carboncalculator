@@ -13,11 +13,11 @@ var apart_before_fuel = 55.9
 var apart_before_gas = 54.6
 
 // Average electricity use per household
-var elec_avg_1 = 1930
-var elec_avg_2 = 3010
-var elec_avg_3 = 3610
-var elec_avg_4 = 4160
-var elec_avg_5 = 4380
+var elec_avg_1 = 1850
+var elec_avg_2 = 2860
+var elec_avg_3 = 3400
+var elec_avg_4 = 3930
+var elec_avg_5 = 4180
 var elec_emission = 0.4570
 
 // Food conversion factor
@@ -33,7 +33,7 @@ var carbon_emission_electric = 9.5
 
 // Public transport conversion factor
 var weeks_per_year = 48
-var publictransport_emission = 0.036
+var publictransport_emission = 0.0266
 
 // Plane conversion factor
 var plane_avg_speed = 907
@@ -147,7 +147,7 @@ var json = {
                 },{
                     "type": "nouislider",
                     name: "electricity_amount_1",
-                    title: "Do you think your household of 1 uses more or less electricity (kWh) than average? The center value is the average for your household size.",
+                    title: "Do you think your household of 1 uses more or less electricity than average (in kWh)? The center value is the average for your household size.",
                     isRequired: true,
                     visibleIf: "{household_number}='1'",
                     step: 1,
@@ -156,7 +156,7 @@ var json = {
                 },{
                     type: "nouislider",
                     name: "electricity_amount_2",
-                    title: "Do you think your household of 2 uses more or less electricity than average? The center value is the average for your household size.",
+                    title: "Do you think your household of 2 uses more or less electricity than average (in kWh)? The center value is the average for your household size.",
                     isRequired: true,
                     visibleIf: "{household_number}='2'",
                     step: 1,
@@ -165,7 +165,7 @@ var json = {
                 },{
                     type: "nouislider",
                     name: "electricity_amount_3",
-                    title: "Do you think your household of 3 uses more or less electricity than average? The center value is the average for your household size.",
+                    title: "Do you think your household of 3 uses more or less electricity than average (in kWh)? The center value is the average for your household size.",
                     isRequired: true,
                     visibleIf: "{household_number}='3'",
                     step: 1,
@@ -174,7 +174,7 @@ var json = {
                 },{
                     type: "nouislider",
                     name: "electricity_amount_4",
-                    title: "Do you think your household of 4 uses more or less electricity than average? The center value is the average for your household size.",
+                    title: "Do you think your household of 4 uses more or less electricity than average (in kWh)? The center value is the average for your household size.",
                     isRequired: true,
                     visibleIf: "{household_number}='4'",
                     step: 1,
@@ -183,7 +183,7 @@ var json = {
                 },{
                     type: "nouislider",
                     name: "electricity_amount_5",
-                    title: "Do you think your household of more than 4 people uses more or less electricity than average (kWh)? The center value is the average for your household size.",
+                    title: "Do you think your household of more than 4 people uses more or less electricity than average (in kWh)? The center value is the average for your household size.",
                     isRequired: true,
                     visibleIf: "{household_number}='More'",
                     step: 1,
