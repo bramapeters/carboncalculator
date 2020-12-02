@@ -44,6 +44,16 @@ var clothes_weight = 0.4
 var clothes_emission = 14.42
 var clothes_quarter = 4
 
+// Final emission scores
+var emission_housing
+var emission_electricity
+var emission_meat_dairy
+var emission_car
+var emission_public_transport
+var emission_plane
+var emission_clothes
+var emission_total
+
 // Definining visualization verification code
 var verification_code = "..."
 
@@ -83,7 +93,7 @@ var json = {
             ],
         }, {
             "name": "page2",
-            "navigationTitle": "Household",
+            "navigationTitle": "Heating",
             "elements": [
                 {
                     type: "dropdown",
@@ -377,14 +387,6 @@ function calcScore(household_number, household_type, household_heat, household_s
                    electricity_amount_2,electricity_amount_3,electricity_amount_4,electricity_amount_5, food_meat, food_dairy,
                    food_vegetables, car_type, car_share, car_distance, train_distance, publictransport_distance, plane_distance,
                    clothes_amount, clothes_used){
-    var emission_housing
-    var emission_electricity
-    var emission_meat_dairy
-    var emission_car
-    var emission_public_transport
-    var emission_plane
-    var emission_clothes
-    var emission_total
 
     // Calculate household footprint
     var carbon_footprint_household
@@ -559,6 +561,49 @@ function showVisualization(emission_total){
     // Change default text result carbon footprint
     var result_text = "Your total carbon footprint is " + emission_total + "kg CO2."
     document.getElementById("result_text").innerText = result_text
+
+    // Load google charts
+    google.charts.load('current', {'packages':['corechart']});
+    google.charts.setOnLoadCallback(drawChart);
+
+    // Draw the chart and set the chart values
+    function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+            ['Attribute', 'Emission'],
+            ['Heating', emission_housing.toFixed(0)],
+            ['Electricity', emission_electricity.toFixed(0)],
+            ['Food', emission_meat_dairy.toFixed(0)],
+            ['Car', emission_car.toFixed(0)],
+            ['Plane', emission_plane.toFixed(0)],
+            ['Public Transport', emission_public_transport.toFixed(0)],
+            ['Clothing', emission_clothes.toFixed(0)]
+        ]);
+
+        // Optional; add a title and set the width and height of the chart
+        var options = {
+            'width':380, 'height':450,
+            'backgroundColor': '#F5F5F5',
+            'colors': ['#8DD9CA', '#8EE3C1', '#9BECB1', '#B3F39C', '#D3F786', '#F9F871'],
+            'legend': {
+                'position': 'bottom',
+                'maxLines': 4,
+                'fontName': 'Segoe Ui',
+            },
+            'pieSliceText': 'label',
+            'pieSliceTextStyle': {'fontName': 'Segoe Ui'},
+            'tooltip': {
+                'textStyle': {
+                    'color': '#FF0000',
+                    'fontName': 'Segoe Ui',
+                },
+                'showColorCode': true,
+            },
+    };
+
+        // Display the chart inside the <div> element with id="piechart"
+        var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+        chart.draw(data, options);
+    }
 
     // Randomize for one out of three visualizations
     var random_number = Math.floor(Math.random() * 3) + 1
