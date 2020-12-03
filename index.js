@@ -447,7 +447,7 @@ function calcScore(household_number, household_type, household_heat, household_s
     } else {
         green_or_grey = 1
     }
-    emission_electricity = (carbon_footprint_electricity*elec_emission*(green_or_grey))/household_number
+    emission_electricity = (carbon_footprint_electricity*elec_emission*green_or_grey)/household_number
 
     // Calculate meat and dairy consumption footprint
     var meatfish_days
@@ -489,25 +489,25 @@ function calcScore(household_number, household_type, household_heat, household_s
     emission_meat_dairy = ((food_weight_meat*meatfish_days*food_emission_meat)+(food_weight_dairy*dairy_days*food_emission_dairy))*weeks_per_year
 
     // Calculate car travel footprint
-    var car_share_boolean
+    var car_share_factor
     if (car_share == "Alone"){
-        car_share_boolean = 1
+        car_share_factor = 1
     } else if (car_share == "Share") {
-        car_share_boolean = 0.5
+        car_share_factor = 0.5
     }
     if (car_type == "Electric"){
-        emission_car = (car_distance/100)*carbon_emission_electric*weeks_per_year*car_share_boolean
+        emission_car = (car_distance/100)*carbon_emission_electric*weeks_per_year*car_share_factor
     } else if (car_type == "Petrol"){
-        emission_car = (car_distance*(6.5/100))*carbon_emission_petrol*weeks_per_year*car_share_boolean
+        emission_car = (car_distance*(6.5/100))*carbon_emission_petrol*weeks_per_year*car_share_factor
     } else if (car_type == "Diesel"){
-        emission_car = (car_distance*(5/100))*carbon_emission_diesel*weeks_per_year*car_share_boolean
+        emission_car = (car_distance*(5/100))*carbon_emission_diesel*weeks_per_year*car_share_factor
     }
 
     // Calculate public transport footprint
-    emission_public_transport = publictransport_distance * publictransport_emission * weeks_per_year
+    emission_public_transport = publictransport_distance*publictransport_emission*weeks_per_year
 
     // Calculate plane travel footprint
-    emission_plane = (plane_avg_speed * plane_distance * plane_emission_km) / 1000
+    emission_plane = (plane_avg_speed*plane_distance*plane_emission_km)/1000
 
     // Calculate clothes footprint
     var clothes_pieces
@@ -559,8 +559,8 @@ function showVisualization(emission_total){
     document.getElementById("surveyResult").style.display="none";
 
     // Change default text result carbon footprint
-    var result_text = "Your total carbon footprint is " + emission_total + "kg CO2."
-    document.getElementById("result_text").innerText = result_text
+    //var result_text = "Your total carbon footprint is " + emission_total + "kg CO2."
+    //document.getElementById("result_text").innerText = result_text
 
     // Load google charts
     google.charts.load('current', {'packages':['corechart']});
@@ -570,13 +570,13 @@ function showVisualization(emission_total){
     function drawChart() {
         var data = google.visualization.arrayToDataTable([
             ['Attribute', 'Emission'],
-            ['Heating', emission_housing.toFixed(0)],
-            ['Electricity', emission_electricity.toFixed(0)],
-            ['Food', emission_meat_dairy.toFixed(0)],
-            ['Car', emission_car.toFixed(0)],
-            ['Plane', emission_plane.toFixed(0)],
-            ['Public Transport', emission_public_transport.toFixed(0)],
-            ['Clothing', emission_clothes.toFixed(0)]
+            ['Heating', emission_housing],
+            ['Electricity', emission_electricity],
+            ['Food', emission_meat_dairy],
+            ['Car', emission_car],
+            ['Plane', emission_plane],
+            ['Public Transport', emission_public_transport],
+            ['Clothing', emission_clothes]
         ]);
 
         // Optional; add a title and set the width and height of the chart
@@ -590,10 +590,10 @@ function showVisualization(emission_total){
                 'fontName': 'Segoe Ui',
             },
             'pieSliceText': 'label',
-            'pieSliceTextStyle': {'fontName': 'Segoe Ui'},
+            'pieSliceTextStyle': {'fontName': 'Segoe Ui', 'color': '#404040'},
             'tooltip': {
                 'textStyle': {
-                    'color': '#FF0000',
+                    'color': '#404040',
                     'fontName': 'Segoe Ui',
                 },
                 'showColorCode': true,
@@ -633,7 +633,6 @@ function copyToClipboard(){
     document.execCommand('copy');
     document.body.removeChild(elem);
     window.alert("Your verification code has been copied to your clipboard! You can now simply paste it elsewhere.");
-
 }
 
 var navTopEl = document.querySelector("#surveyNavigationTop");
