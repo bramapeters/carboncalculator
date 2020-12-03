@@ -37,7 +37,7 @@ var publictransport_emission = 0.0266
 
 // Plane conversion factor
 var plane_avg_speed = 907
-var plane_emission_km = 175
+var plane_emission_km = 125
 
 // Clothes conversion factor
 var clothes_weight = 0.4
