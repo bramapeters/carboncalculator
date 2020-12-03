@@ -570,13 +570,13 @@ function showVisualization(emission_total){
     function drawChart() {
         var data = google.visualization.arrayToDataTable([
             ['Attribute', 'Emission'],
-            ['Heating', emission_housing],
-            ['Electricity', emission_electricity],
-            ['Food', emission_meat_dairy],
-            ['Car', emission_car],
-            ['Plane', emission_plane],
-            ['Public Transport', emission_public_transport],
-            ['Clothing', emission_clothes]
+            ['Heating', Math.round(emission_housing)],
+            ['Electricity', Math.round(emission_electricity)],
+            ['Food', Math.round(emission_meat_dairy)],
+            ['Car', Math.round(emission_car)],
+            ['Plane', Math.round(emission_plane)],
+            ['Public Transport', Math.round(emission_public_transport)],
+            ['Clothing', Math.round(emission_clothes)]
         ]);
 
         // Optional; add a title and set the width and height of the chart
