@@ -3,55 +3,53 @@
     <head>
         <title>Carbon Footprint Calculator</title>
         <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <script src="https://unpkg.com/jquery"></script>
         <link rel="stylesheet" href="index.css">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <link rel="stylesheet" href="https://unpkg.com/bootstrap@3.3.7/dist/css/bootstrap.min.css">
+        <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+        <script src="https://unpkg.com/jquery"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/10.0.0/bootstrap-slider.js"></script>
         <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/10.0.0/css/bootstrap-slider.css" rel="stylesheet"/>
         <script src="https://unpkg.com/nouislider@9.2.0/distribute/nouislider.js"></script>
-        <link rel="stylesheet" type="text/css" href="main.css" />
         <script src="https://surveyjs.azureedge.net/1.8.14/survey.jquery.min.js"></script>
         <link href="https://surveyjs.azureedge.net/1.8.14/modern.css" type="text/css" rel="stylesheet"/>
         <script src="https://unpkg.com/nouislider@9.2.0/distribute/nouislider.js"></script>
         <script src="https://unpkg.com/wnumb@1.1.0"></script>
         <link href="https://unpkg.com/nouislider@9.2.0/distribute/nouislider.min.css" rel="stylesheet"/>
         <script src="https://surveyjs.azureedge.net/1.8.14/surveyjs-widgets.js"></script>
-        <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     </head>
-    <header class="bg-primary text-white" style="background-color:#8dd9ca; box-shadow: 5px 5px #E8E8E8">
-        <div class="container text-center" style="margin-bottom:50px">
-            <h1 style="font-family: Segoe Ui">0HM170 - Carbon Footprint Calculator</h1>
-            <p style="font-family: Segoe Ui" class="lead">Developed as part of the HTI-master program at the University Technology Eindhoven</p>
+    <header class="bg-primary text-white" id="header">
+        <div class="container text-center" id="header_textbox">
+            <h1 id="text-font">0HM170 - Carbon Footprint Calculator</h1>
+            <p class="lead">Developed as part of the HTI-master program at the University Technology Eindhoven</p>
         </div>
     </header>
     <body>
-    <div id="surveyNavigation" style="width:100%; margin:auto; text-align:center">
-        <div id="surveyNavigationTop" style="margin-left: auto; margin-right: auto"></div>
+    <div id="surveyNavigation">
+        <div id="surveyNavigationTop"></div>
     </div>
-    <div id="surveyElement" style="display:inline-block; scroll: overflow; width: 60%; margin-top:40px; margin-bottom: 60px; margin-left: 20%;"></div>
+    <div id="surveyElement"></div>
     <div id="surveyResult"></div>
         <script type="text/javascript" src="index.js"></script>
-    <div id="visualization" class="polaroid" style="display:none">
-        <div class="polaroid_title" style="box-shadow: 0px 5px #E8E8E8; background-color: #8dd9ca; font-family: Segoe Ui; z-index: 10; position: absolute; top: 0px; left: 0px;text-align: center; padding-top: 10px";>
-            <p id="result_text" style="font-family: Segoe Ui; color: white"/><b>Your personal carbon footprint:</b>
+    <div id="visualization" class="polaroid">
+        <div class="polaroid_title">
+            <p id="result_text"/><b>Your personal carbon footprint:</b>
         </div>
-        <div style="margin-top: 40px; overflow: hidden; width: 50%; height:400px; float:left; z-index: 1; position: absolute; top: 0px; left: 0px; background-color: #F5F5F5">
+        <div id="piechart_holder">
             <div id="piechart"></div>
         </div>
-        <div style="margin-top: 40px; width: 50%; height:400px; float:right; background-color: #F5F5F5">
+        <div id="visualization_holder">
             <img id="visualization_img" src="V1_1.jpg" alt="5 Terre" style="width:100%; display:none">
         </div>
         <div class="text-block" onclick="copyToClipboard()">
-            <h4 id="verification_code" style="font-size: 10px">VERIFICATION CODE: ...</h4>
-            <button style="margin-bottom:10px; position: center; background-color: gray; width:100%; padding: 5px; color: white; border: none; font-size:10px" onclick="copyToClipboard()">COPY TO CLIPBOARD</button>
+            <h4 id="verification_code">VERIFICATION CODE: ...</h4>
+            <button id="verification_button" onclick="copyToClipboard()">COPY TO CLIPBOARD</button>
         </div>
-
     </div>
     </body>
     <footer id="footer" class="py-5 bg-dark">
         <div>
-            <p style="font-family: Segoe Ui" class="m-0 text-center text-white">Copyright &copy; Dennis Arreman, Yanyu Zheng, Pam Philippens, Bram Peters</p>
+            <p id="footer_text" class="m-0 text-center text-white">Copyright &copy; Dennis Arreman, Yanyu Zheng, Pam Philippens, Bram Peters</p>
         </div>
     </footer>
 </html>
