@@ -585,7 +585,7 @@ function showVisualization(emission_total){
             'backgroundColor': '#F5F5F5',
             'colors': ['#8DD9CA', '#8EE3C1', '#9BECB1', '#B3F39C', '#D3F786', '#F9F871'],
             'legend': {
-                'position': 'bottom',
+                'position': 'top',
                 'maxLines': 4,
                 'fontName': 'Segoe Ui',
             },
