@@ -586,7 +586,7 @@ function showVisualization(emission_total) {
         // Optional; add a title and set the width and height of the chart
         var options = {
             'width': 450, 'height': 450,
-            'backgroundColor': '#F5F5F5',
+            'backgroundColor': 'transparent',
             'colors': ['#8DD9CA', '#8EE3C1', '#9BECB1', '#B3F39C', '#D3F786', '#F9F871'],
             'legend': {
                 'position': 'top',
