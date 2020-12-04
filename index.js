@@ -561,6 +561,10 @@ function showVisualization(emission_total) {
     // Show load icon
     document.getElementById("load_icon").style.display = "inline-block";
 
+    // Show fade out screens
+    document.getElementById("overlay_1").style.display = "inline-block";
+    document.getElementById("overlay_2").style.display = "inline";
+
     // Load google charts
     google.charts.load('current', {'packages': ['corechart']});
     google.charts.setOnLoadCallback(drawChart);
@@ -621,10 +625,15 @@ function showVisualization(emission_total) {
     }
 
     setTimeout(function () {
+        // Hide fade out screens
+        document.getElementById("overlay_1").style.display = "none";
+        document.getElementById("overlay_2").style.display = "none";
         // Hide load icon
         document.getElementById("load_icon").style.display = "none";
-        // Show visualization
-        document.getElementById("visualization").style.display = "block";
+        setTimeout(function () {
+            // Show visualization
+            document.getElementById("visualization").style.display = "block";
+        }, 100);
     }, 2000);
 }
 
