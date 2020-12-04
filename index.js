@@ -156,7 +156,7 @@ var json = {
                         "Green electricity",
                         "Grey electricity"
                     ]
-                },{
+                }, {
                     "type": "nouislider",
                     name: "electricity_amount_1",
                     title: "Do you think your household of 1 uses more or less electricity than average (in kWh)? The center value is the average for your household size.",
@@ -164,8 +164,8 @@ var json = {
                     visibleIf: "{household_number}='1'",
                     step: 1,
                     rangeMin: 0,
-                    rangeMax: 2*elec_avg_1,
-                },{
+                    rangeMax: 2 * elec_avg_1,
+                }, {
                     type: "nouislider",
                     name: "electricity_amount_2",
                     title: "Do you think your household of 2 uses more or less electricity than average (in kWh)? The center value is the average for your household size.",
@@ -173,8 +173,8 @@ var json = {
                     visibleIf: "{household_number}='2'",
                     step: 1,
                     rangeMin: 0,
-                    rangeMax: 2*elec_avg_2,
-                },{
+                    rangeMax: 2 * elec_avg_2,
+                }, {
                     type: "nouislider",
                     name: "electricity_amount_3",
                     title: "Do you think your household of 3 uses more or less electricity than average (in kWh)? The center value is the average for your household size.",
@@ -182,8 +182,8 @@ var json = {
                     visibleIf: "{household_number}='3'",
                     step: 1,
                     rangeMin: 0,
-                    rangeMax: 2*elec_avg_3,
-                },{
+                    rangeMax: 2 * elec_avg_3,
+                }, {
                     type: "nouislider",
                     name: "electricity_amount_4",
                     title: "Do you think your household of 4 uses more or less electricity than average (in kWh)? The center value is the average for your household size.",
@@ -191,8 +191,8 @@ var json = {
                     visibleIf: "{household_number}='4'",
                     step: 1,
                     rangeMin: 0,
-                    rangeMax: 2*elec_avg_4,
-                },{
+                    rangeMax: 2 * elec_avg_4,
+                }, {
                     type: "nouislider",
                     name: "electricity_amount_5",
                     title: "Do you think your household of more than 4 people uses more or less electricity than average (in kWh)? The center value is the average for your household size.",
@@ -200,7 +200,7 @@ var json = {
                     visibleIf: "{household_number}='More'",
                     step: 1,
                     rangeMin: 0,
-                    rangeMax: 2*elec_avg_5,
+                    rangeMax: 2 * elec_avg_5,
                 }
             ]
         }, {
@@ -371,153 +371,153 @@ survey
         var clothes_amount = result.getValue("clothes_amount");
         var clothes_used = result.getValue("clothes_used");
         calcScore(household_number, household_type, household_heat, household_size, electricity_type,
-            electricity_amount_1, electricity_amount_2,electricity_amount_3,electricity_amount_4,electricity_amount_5,
+            electricity_amount_1, electricity_amount_2, electricity_amount_3, electricity_amount_4, electricity_amount_5,
             food_meat, food_dairy, food_vegetables, car_type, car_share, car_distance, train_distance, publictransport_distance,
             plane_distance, clothes_amount, clothes_used);
         document
             .querySelector('#surveyResult')
             .textContent = "Result JSON:\n" + JSON.stringify(result.data, null, 3);
-            //window.location.href = "result.html";
+        //window.location.href = "result.html";
     });
 
 $("#surveyElement").Survey({model: survey});
 
 // Calculate carbon footprint score
 function calcScore(household_number, household_type, household_heat, household_size, electricity_type, electricity_amount_1,
-                   electricity_amount_2,electricity_amount_3,electricity_amount_4,electricity_amount_5, food_meat, food_dairy,
+                   electricity_amount_2, electricity_amount_3, electricity_amount_4, electricity_amount_5, food_meat, food_dairy,
                    food_vegetables, car_type, car_share, car_distance, train_distance, publictransport_distance, plane_distance,
-                   clothes_amount, clothes_used){
+                   clothes_amount, clothes_used) {
 
     // Calculate household footprint
     var carbon_footprint_household
-    if (household_type == "Apartment, before 1975"){
-        if (household_heat == "Electricity heating"){
+    if (household_type == "Apartment, before 1975") {
+        if (household_heat == "Electricity heating") {
             carbon_footprint_household = apart_before_elec
-        } else if (household_heat == "Fuel oil heating"){
+        } else if (household_heat == "Fuel oil heating") {
             carbon_footprint_household = apart_before_fuel
-        } else if (household_heat == "Gas heating"){
+        } else if (household_heat == "Gas heating") {
             carbon_footprint_household = apart_before_gas
         }
-    } else if (household_type == "Apartment, after 1975"){
-        if (household_heat == "Electricity heating"){
+    } else if (household_type == "Apartment, after 1975") {
+        if (household_heat == "Electricity heating") {
             carbon_footprint_household = apart_after_elec
-        } else if (household_heat == "Fuel oil heating"){
+        } else if (household_heat == "Fuel oil heating") {
             carbon_footprint_household = apart_after_fuel
-        } else if (household_heat == "Gas heating"){
+        } else if (household_heat == "Gas heating") {
             carbon_footprint_household = apart_after_gas
         }
-    } else if (household_type == "House, before 1975"){
-        if (household_heat == "Electricity heating"){
+    } else if (household_type == "House, before 1975") {
+        if (household_heat == "Electricity heating") {
             carbon_footprint_household = house_before_elec
-        } else if (household_heat == "Fuel oil heating"){
+        } else if (household_heat == "Fuel oil heating") {
             carbon_footprint_household = house_before_fuel
-        } else if (household_heat == "Gas heating"){
+        } else if (household_heat == "Gas heating") {
             carbon_footprint_household = house_before_gas
         }
-    } else if (household_type == "House, after 1975"){
-        if (household_heat == "Electricity heating"){
+    } else if (household_type == "House, after 1975") {
+        if (household_heat == "Electricity heating") {
             carbon_footprint_household = house_after_elec
-        } else if (household_heat == "Fuel oil heating"){
+        } else if (household_heat == "Fuel oil heating") {
             carbon_footprint_household = house_after_fuel
-        } else if (household_heat == "Gas heating"){
+        } else if (household_heat == "Gas heating") {
             carbon_footprint_household = house_after_gas
         }
     }
-    if (household_number == "More"){
+    if (household_number == "More") {
         household_number = 5
     }
-        emission_housing = (carbon_footprint_household * household_size)/household_number
+    emission_housing = (carbon_footprint_household * household_size) / household_number
 
     // Calculate electricity footprint
     var carbon_footprint_electricity
     var green_or_grey
-    if (household_number == "1"){
+    if (household_number == "1") {
         carbon_footprint_electricity = electricity_amount_1
-    } else if (household_number == "2"){
+    } else if (household_number == "2") {
         carbon_footprint_electricity = electricity_amount_2
-    } else if (household_number == "3"){
+    } else if (household_number == "3") {
         carbon_footprint_electricity = electricity_amount_3
-    } else if (household_number == "4"){
+    } else if (household_number == "4") {
         carbon_footprint_electricity = electricity_amount_4
-    } else if (household_number == "5"){
+    } else if (household_number == "5") {
         carbon_footprint_electricity = electricity_amount_5
     }
-    if (electricity_type == "Green electricity"){
+    if (electricity_type == "Green electricity") {
         green_or_grey = 0.4
     } else {
         green_or_grey = 1
     }
-    emission_electricity = (carbon_footprint_electricity*elec_emission*green_or_grey)/household_number
+    emission_electricity = (carbon_footprint_electricity * elec_emission * green_or_grey) / household_number
 
     // Calculate meat and dairy consumption footprint
     var meatfish_days
     var dairy_days
-    if (food_meat == "Never"){
+    if (food_meat == "Never") {
         meatfish_days = 0
-    } else if (food_meat == "Very seldom, once per week"){
+    } else if (food_meat == "Very seldom, once per week") {
         meatfish_days = 1
-    } else if (food_meat == "Seldom, twice per week"){
+    } else if (food_meat == "Seldom, twice per week") {
         meatfish_days = 2
-    } else if (food_meat == "Sometimes, three times per week"){
+    } else if (food_meat == "Sometimes, three times per week") {
         meatfish_days = 3
-    } else if (food_meat == "Sometimes, four times per week"){
+    } else if (food_meat == "Sometimes, four times per week") {
         meatfish_days = 4
-    } else if (food_meat == "Regularly, five times per week"){
+    } else if (food_meat == "Regularly, five times per week") {
         meatfish_days = 5
-    } else if (food_meat == "Very regularly, six times per week"){
+    } else if (food_meat == "Very regularly, six times per week") {
         meatfish_days = 6
-    } else if (food_meat == "Daily"){
+    } else if (food_meat == "Daily") {
         meatfish_days = 7
     }
-    if (food_dairy == "Never"){
+    if (food_dairy == "Never") {
         dairy_days = 0
-    } else if (food_dairy == "Very seldom, once per week"){
+    } else if (food_dairy == "Very seldom, once per week") {
         dairy_days = 1
-    } else if (food_dairy == "Seldom, twice per week"){
+    } else if (food_dairy == "Seldom, twice per week") {
         dairy_days = 2
-    } else if (food_dairy == "Sometimes, three times per week"){
+    } else if (food_dairy == "Sometimes, three times per week") {
         dairy_days = 3
-    } else if (food_dairy == "Sometimes, four times per week"){
+    } else if (food_dairy == "Sometimes, four times per week") {
         dairy_days = 4
-    } else if (food_dairy == "Regularly, five times per week"){
+    } else if (food_dairy == "Regularly, five times per week") {
         dairy_days = 5
-    } else if (food_dairy == "Very regularly, six times per week"){
+    } else if (food_dairy == "Very regularly, six times per week") {
         dairy_days = 6
-    } else if (food_dairy == "Daily"){
+    } else if (food_dairy == "Daily") {
         dairy_days = 7
     }
-    emission_meat_dairy = ((food_weight_meat*meatfish_days*food_emission_meat)+(food_weight_dairy*dairy_days*food_emission_dairy))*weeks_per_year
+    emission_meat_dairy = ((food_weight_meat * meatfish_days * food_emission_meat) + (food_weight_dairy * dairy_days * food_emission_dairy)) * weeks_per_year
 
     // Calculate car travel footprint
     var car_share_factor
-    if (car_share == "Alone"){
+    if (car_share == "Alone") {
         car_share_factor = 1
     } else if (car_share == "Share") {
         car_share_factor = 0.5
     }
-    if (car_type == "Electric"){
-        emission_car = (car_distance/100)*carbon_emission_electric*weeks_per_year*car_share_factor
-    } else if (car_type == "Petrol"){
-        emission_car = (car_distance*(6.5/100))*carbon_emission_petrol*weeks_per_year*car_share_factor
-    } else if (car_type == "Diesel"){
-        emission_car = (car_distance*(5/100))*carbon_emission_diesel*weeks_per_year*car_share_factor
+    if (car_type == "Electric") {
+        emission_car = (car_distance / 100) * carbon_emission_electric * weeks_per_year * car_share_factor
+    } else if (car_type == "Petrol") {
+        emission_car = (car_distance * (6.5 / 100)) * carbon_emission_petrol * weeks_per_year * car_share_factor
+    } else if (car_type == "Diesel") {
+        emission_car = (car_distance * (5 / 100)) * carbon_emission_diesel * weeks_per_year * car_share_factor
     }
 
     // Calculate public transport footprint
-    emission_public_transport = publictransport_distance*publictransport_emission*weeks_per_year
+    emission_public_transport = publictransport_distance * publictransport_emission * weeks_per_year
 
     // Calculate plane travel footprint
-    emission_plane = (plane_avg_speed*plane_distance*plane_emission_km)/1000
+    emission_plane = (plane_avg_speed * plane_distance * plane_emission_km) / 1000
 
     // Calculate clothes footprint
     var clothes_pieces
-    if (clothes_amount == "1 piece per quarter"){
+    if (clothes_amount == "1 piece per quarter") {
         clothes_pieces = 1
-    } else if (clothes_amount == "2 pieces per quarter"){
+    } else if (clothes_amount == "2 pieces per quarter") {
         clothes_pieces = 2
-    } else if (clothes_amount == "3 pieces per quarter"){
+    } else if (clothes_amount == "3 pieces per quarter") {
         clothes_pieces = 3
-    } else if (clothes_amount == "4 pieces per quarter"){
+    } else if (clothes_amount == "4 pieces per quarter") {
         clothes_pieces = 4
     } else if (clothes_amount == "5 pieces per quarter") {
         clothes_pieces = 5
@@ -531,15 +531,15 @@ function calcScore(household_number, household_type, household_heat, household_s
         clothes_pieces = 9
     } else if (clothes_amount == "10 pieces per quarter") {
         clothes_pieces = 10
-    } else if (clothes_amount == "More than 10 pieces per quarter"){
+    } else if (clothes_amount == "More than 10 pieces per quarter") {
         clothes_pieces = 11
     }
-    if (clothes_used == "Usually second-hand clothes"){
+    if (clothes_used == "Usually second-hand clothes") {
         emission_clothes = 0
-    } else if (clothes_used == "I buy both equally often"){
-        emission_clothes = clothes_weight*clothes_emission*clothes_pieces*clothes_quarter*0.5
-    } else if (clothes_used == "Usually new clothes"){
-        emission_clothes = clothes_weight*clothes_emission*clothes_pieces*clothes_quarter
+    } else if (clothes_used == "I buy both equally often") {
+        emission_clothes = clothes_weight * clothes_emission * clothes_pieces * clothes_quarter * 0.5
+    } else if (clothes_used == "Usually new clothes") {
+        emission_clothes = clothes_weight * clothes_emission * clothes_pieces * clothes_quarter
     }
 
     // Calculate total emission footprint
@@ -552,18 +552,17 @@ function calcScore(household_number, household_type, household_heat, household_s
 }
 
 // Show visualization function
-function showVisualization(emission_total){
+function showVisualization(emission_total) {
     // Hide survey element
-    document.getElementById("surveyNavigation").style.display="none";
-    document.getElementById("surveyElement").style.display="none";
-    document.getElementById("surveyResult").style.display="none";
+    document.getElementById("surveyNavigation").style.display = "none";
+    document.getElementById("surveyElement").style.display = "none";
+    document.getElementById("surveyResult").style.display = "none";
 
-    // Change default text result carbon footprint
-    //var result_text = "Your total carbon footprint is " + emission_total + "kg CO2."
-    //document.getElementById("result_text").innerText = result_text
+    // Show load icon
+    document.getElementById("load_icon").style.display = "inline-block";
 
     // Load google charts
-    google.charts.load('current', {'packages':['corechart']});
+    google.charts.load('current', {'packages': ['corechart']});
     google.charts.setOnLoadCallback(drawChart);
 
     // Draw the chart and set the chart values
@@ -581,7 +580,7 @@ function showVisualization(emission_total){
 
         // Optional; add a title and set the width and height of the chart
         var options = {
-            'width':380, 'height':450,
+            'width': 380, 'height': 450,
             'backgroundColor': '#F5F5F5',
             'colors': ['#8DD9CA', '#8EE3C1', '#9BECB1', '#B3F39C', '#D3F786', '#F9F871'],
             'legend': {
@@ -598,7 +597,7 @@ function showVisualization(emission_total){
                 },
                 'showColorCode': true,
             },
-    };
+        };
 
         // Display the chart inside the <div> element with id="piechart"
         var chart = new google.visualization.PieChart(document.getElementById('piechart'));
@@ -607,25 +606,30 @@ function showVisualization(emission_total){
 
     // Randomize for one out of three visualizations
     var random_number = Math.floor(Math.random() * 3) + 1
-    if (random_number == 1){
+    if (random_number == 1) {
         verification_code = "V1_1"
         document.getElementById("verification_code").innerText = "VERIFICATION CODE: " + verification_code
         document.getElementById("visualization_img").src = verification_code + ".jpg";
-    } else if (random_number == 2){
+    } else if (random_number == 2) {
         verification_code = "V2_1"
         document.getElementById("verification_code").innerText = "VERIFICATION CODE: " + verification_code
         document.getElementById("visualization_img").src = verification_code + ".jpg";
-    } else if (random_number == 3){
+    } else if (random_number == 3) {
         verification_code = "V3_1"
         document.getElementById("verification_code").innerText = "VERIFICATION CODE: " + verification_code
         document.getElementById("visualization_img").src = verification_code + ".jpg";
     }
-    // Show visualization
-    document.getElementById("visualization").style.display="block";
+
+    setTimeout(function () {
+        // Hide load icon
+        document.getElementById("load_icon").style.display = "none";
+        // Show visualization
+        document.getElementById("visualization").style.display = "block";
+    }, 2000);
 }
 
 // Click visualization box to copy verification code to clipboard
-function copyToClipboard(){
+function copyToClipboard() {
     const elem = document.createElement('textarea');
     elem.value = verification_code;
     document.body.appendChild(elem);

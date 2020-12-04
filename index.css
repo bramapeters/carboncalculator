@@ -172,6 +172,18 @@ html,body{
     font-family: Segoe Ui;
 }
 
+#load_icon{
+    width: 200px;
+    position: absolute;
+    top: 0px;
+    z-index: 2;
+    margin-left: -100px;
+    left: 50%;
+    margin-top: -100px;
+    top: 50%;
+    display: none;
+}
+
 #text-font{
     font-family: Segoe Ui;
 }
@@ -224,6 +236,11 @@ html,body{
     height:400px;
     float:right;
     background-color: #F5F5F5;
+}
+
+#visualization_img{
+    width:100%;
+    display:none
 }
 
 #verification_code{
