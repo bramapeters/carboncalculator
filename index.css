@@ -216,6 +216,7 @@ html,body{
 #piechart{
     position: relative;
     left: -30px;
+    top: -10px;
 }
 
 #visualization_img{
