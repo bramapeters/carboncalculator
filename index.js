@@ -583,7 +583,6 @@ function showVisualization(emission_total) {
             ['Clothing', Math.round(emission_clothes)]
         ]);
 
-        // Optional; add a title and set the width and height of the chart
         var options = {
             'width': 450, 'height': 450,
             'backgroundColor': 'transparent',
@@ -595,10 +594,12 @@ function showVisualization(emission_total) {
                 'textStyle':{
                     'color': '#404040',
                 }
-
             },
             'pieSliceText': 'label',
-            'pieSliceTextStyle': {'fontName': 'Segoe Ui', 'color': '#404040'},
+            'pieSliceTextStyle': {
+                'fontName': 'Segoe Ui',
+                'color': '#404040'
+            },
             'tooltip': {
                 'textStyle': {
                     'color': '#404040',
@@ -616,14 +617,18 @@ function showVisualization(emission_total) {
     // Randomize for one out of three visualizations
     var random_number = Math.floor(Math.random() * 3) + 1
     if (random_number == 1) {
+        // Globe visualization
         verification_code = "V1_1"
         document.getElementById("verification_code").innerText = "VERIFICATION CODE: " + verification_code
         document.getElementById("visualization_img").src = verification_code + ".jpg";
     } else if (random_number == 2) {
-        verification_code = "V2_1"
+        // Numerical visualization
+        verification_code = "NV_" + Math.round(emission_total)
         document.getElementById("verification_code").innerText = "VERIFICATION CODE: " + verification_code
-        document.getElementById("visualization_img").src = verification_code + ".jpg";
+        document.getElementById("numerical_text").innerHTML = "<b>" + emission_total + " kg CO<sub>2</sub></b>"
+        document.getElementById("numerical_visualization").style.display = "inline";
     } else if (random_number == 3) {
+        // Social comparison visualization
         verification_code = "V3_1"
         document.getElementById("verification_code").innerText = "VERIFICATION CODE: " + verification_code
         document.getElementById("visualization_img").src = verification_code + ".jpg";

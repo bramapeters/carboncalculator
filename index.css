@@ -196,10 +196,6 @@ html,body{
     margin-left: 20%;
 }
 
-#visualization{
-    display:none;
-}
-
 #result_text{
     font-family: Segoe Ui;
     color: white;
@@ -220,14 +216,6 @@ html,body{
 #piechart{
     position: relative;
     left: -30px;
-}
-
-#visualization_holder{
-    margin-top: 40px;
-    width: 50%;
-    height:400px;
-    float:right;
-    background-color: #F5F5F5;
 }
 
 #visualization_img{
@@ -293,4 +281,42 @@ html,body{
     margin-top: -100px;
     top: 50%;
     display: none;
+}
+
+div.polaroid_visualization {
+    padding: 25px;
+    width: 43%;
+    box-sizing: border-box;
+    margin-left: 30px;
+    margin-top: 30px;
+    margin-right: 30px;
+    position: fixed;
+    background-color: white;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+#visualization_holder{
+    margin-top: 40px;
+    width: 50%;
+    height:400px;
+    float:right;
+    background-color: #F5F5F5;
+}
+
+.numerical_text{
+    font-family: "Segoe UI";
+    font-size: 16px;
+    color: #383838;
+}
+
+.numerical_score{
+    font-weight: bold;
+}
+
+#numerical_visualization{
+    display:none;
+}
+
+#visualization{
+    display:none;
 }
