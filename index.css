@@ -295,14 +295,6 @@ div.polaroid_visualization {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
-#visualization_holder{
-    margin-top: 40px;
-    width: 50%;
-    height:400px;
-    float:right;
-    background-color: #F5F5F5;
-}
-
 .numerical_text{
     font-family: "Segoe UI";
     font-size: 16px;
@@ -317,6 +309,33 @@ div.polaroid_visualization {
     display:none;
 }
 
+#globe_visualization{
+    display:none;
+}
+
+#globe_image {
+    width: 100%;
+    position: relative;
+    top: -40px;
+}
+
 #visualization{
     display:none;
+}
+
+#visualization_holder{
+    margin-top: 40px;
+    width: 50%;
+    height:400px;
+    float:right;
+    background-color: #F5F5F5;
+}
+
+#piechart_info{
+    position: absolute;
+    text-align: end;
+    font-family: "Segoe UI";
+    color: #686868;
+    bottom: 0px;
+    left: 90px;
 }

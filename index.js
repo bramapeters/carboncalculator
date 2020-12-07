@@ -159,7 +159,7 @@ var json = {
                 }, {
                     "type": "nouislider",
                     name: "electricity_amount_1",
-                    title: "Do you think your household of 1 uses more or less electricity than average (in kWh)? The center value is the average for your household size.",
+                    title: "Do you think your household of 1 uses more or less electricity than average annually (in kWh)? For reference, the center value is the average annual electricity consumption (in kWh) for your household size.",
                     isRequired: true,
                     visibleIf: "{household_number}='1'",
                     step: 1,
@@ -168,7 +168,7 @@ var json = {
                 }, {
                     type: "nouislider",
                     name: "electricity_amount_2",
-                    title: "Do you think your household of 2 uses more or less electricity than average (in kWh)? The center value is the average for your household size.",
+                    title: "Do you think your household of 2 uses more or less electricity than average annually (in kWh)? For reference, the center value is the average annual electricity consumption (in kWh) for your household size.",
                     isRequired: true,
                     visibleIf: "{household_number}='2'",
                     step: 1,
@@ -177,7 +177,7 @@ var json = {
                 }, {
                     type: "nouislider",
                     name: "electricity_amount_3",
-                    title: "Do you think your household of 3 uses more or less electricity than average (in kWh)? The center value is the average for your household size.",
+                    title: "Do you think your household of 3 uses more or less electricity than average annually (in kWh)? For reference, the center value is the average annual electricity consumption (in kWh) for your household size.",
                     isRequired: true,
                     visibleIf: "{household_number}='3'",
                     step: 1,
@@ -186,7 +186,7 @@ var json = {
                 }, {
                     type: "nouislider",
                     name: "electricity_amount_4",
-                    title: "Do you think your household of 4 uses more or less electricity than average (in kWh)? The center value is the average for your household size.",
+                    title: "Do you think your household of 4 uses more or less electricity than average annually (in kWh)? For reference, the center value is the average annual electricity consumption (in kWh) for your household size.",
                     isRequired: true,
                     visibleIf: "{household_number}='4'",
                     step: 1,
@@ -195,7 +195,7 @@ var json = {
                 }, {
                     type: "nouislider",
                     name: "electricity_amount_5",
-                    title: "Do you think your household of more than 4 people uses more or less electricity than average (in kWh)? The center value is the average for your household size.",
+                    title: "Do you think your household of more than 4 people uses more or less electricity than average annually (in kWh)? For reference, the center value is the average annual electricity consumption (in kWh) for your household size.",
                     isRequired: true,
                     visibleIf: "{household_number}='More'",
                     step: 1,
@@ -616,11 +616,33 @@ function showVisualization(emission_total) {
 
     // Randomize for one out of three visualizations
     var random_number = Math.floor(Math.random() * 3) + 1
+    random_number = 1
     if (random_number == 1) {
         // Globe visualization
-        verification_code = "V1_1"
+        if (emission_total > 0 && emission_total < 3000){
+            verification_code = "GV_1";
+        } else if (emission_total >= 3000 && emission_total < 6000){
+            verification_code = "GV_2";
+        } else if (emission_total >= 6000 && emission_total < 9000){
+            verification_code = "GV_3";
+        } else if (emission_total >= 9000 && emission_total < 12000){
+            verification_code = "GV_4";
+        } else if (emission_total >= 12000 && emission_total < 15000){
+            verification_code = "GV_5";
+        } else if (emission_total >= 15000 && emission_total < 18000){
+            verification_code = "GV_6";
+        } else if (emission_total >= 18000 && emission_total < 21000){
+            verification_code = "GV_7";
+        } else if (emission_total >= 21000 && emission_total < 24000){
+            verification_code = "GV_8";
+        } else if (emission_total >= 24000 && emission_total < 27000){
+            verification_code = "GV_9";
+        } else if (emission_total >= 27000){
+            verification_code = "GV_10";
+        }
         document.getElementById("verification_code").innerText = "VERIFICATION CODE: " + verification_code
-        document.getElementById("visualization_img").src = verification_code + ".jpg";
+        document.getElementById("globe_image").src = verification_code + ".png";
+        document.getElementById("globe_visualization").style.display = "inline";
     } else if (random_number == 2) {
         // Numerical visualization
         verification_code = "NV_" + Math.round(emission_total)
