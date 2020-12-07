@@ -651,7 +651,7 @@ function showVisualization(emission_total) {
         document.getElementById("numerical_visualization").style.display = "inline";
     } else if (random_number == 3) {
         // Social comparison visualization
-        verification_code = "V3_1"
+        verification_code = "SCV_1"
         document.getElementById("verification_code").innerText = "VERIFICATION CODE: " + verification_code
         document.getElementById("visualization_img").src = verification_code + ".jpg";
     }
