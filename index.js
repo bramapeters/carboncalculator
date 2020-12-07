@@ -619,25 +619,25 @@ function showVisualization(emission_total) {
     random_number = 1
     if (random_number == 1) {
         // Globe visualization
-        if (emission_total > 0 && emission_total < 3000){
+        if (emission_total < 3900){
             verification_code = "GV_1";
-        } else if (emission_total >= 3000 && emission_total < 6000){
+        } else if (emission_total >= 3900 && emission_total < 6800){
             verification_code = "GV_2";
-        } else if (emission_total >= 6000 && emission_total < 9000){
+        } else if (emission_total >= 6800 && emission_total < 9700){
             verification_code = "GV_3";
-        } else if (emission_total >= 9000 && emission_total < 12000){
+        } else if (emission_total >= 9700 && emission_total < 12600){
             verification_code = "GV_4";
-        } else if (emission_total >= 12000 && emission_total < 15000){
+        } else if (emission_total >= 12600 && emission_total < 15500){
             verification_code = "GV_5";
-        } else if (emission_total >= 15000 && emission_total < 18000){
+        } else if (emission_total >= 15500 && emission_total < 18400){
             verification_code = "GV_6";
-        } else if (emission_total >= 18000 && emission_total < 21000){
+        } else if (emission_total >= 18400 && emission_total < 21300){
             verification_code = "GV_7";
-        } else if (emission_total >= 21000 && emission_total < 24000){
+        } else if (emission_total >= 21300 && emission_total < 24200){
             verification_code = "GV_8";
-        } else if (emission_total >= 24000 && emission_total < 27000){
+        } else if (emission_total >= 24200 && emission_total < 27100){
             verification_code = "GV_9";
-        } else if (emission_total >= 27000){
+        } else if (emission_total >= 27100){
             verification_code = "GV_10";
         }
         document.getElementById("verification_code").innerText = "VERIFICATION CODE: " + verification_code
