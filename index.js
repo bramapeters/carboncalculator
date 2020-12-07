@@ -641,7 +641,7 @@ function showVisualization(emission_total) {
             verification_code = "GV_10";
         }
         document.getElementById("verification_code").innerText = "VERIFICATION CODE: " + verification_code
-        document.getElementById("globe_image").src = verification_code + ".png";
+        document.getElementById("globe_image").src = "globes_images/" + verification_code + ".png";
         document.getElementById("globe_visualization").style.display = "inline";
     } else if (random_number == 2) {
         // Numerical visualization
