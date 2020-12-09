@@ -287,11 +287,11 @@ div.polaroid_visualization {
     display:none;
 }
 
-#globe_visualization{
+#image_visualization{
     display:none;
 }
 
-#globe_image {
+#result_image {
     width: 100%;
     position: relative;
     top: -20px;
