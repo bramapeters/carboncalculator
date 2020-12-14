@@ -616,7 +616,7 @@ function showVisualization(emission_total) {
 
     // Randomize for one out of three visualizations
     var random_number = Math.floor(Math.random() * 3) + 1
-    random_number = 3
+    random_number = 1
     if (random_number == 1) {
         // Globe visualization
         if (emission_total < 3900){
