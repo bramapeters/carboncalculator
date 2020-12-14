@@ -178,18 +178,6 @@ html,body{
     color: white;
 }
 
-#piechart_holder{
-    margin-top: 40px;
-    width: 50%;
-    height:400px;
-    float:right;
-    z-index: 1;
-    position: absolute;
-    top: 0px;
-    left: 0px;
-    background-color: #F5F5F5;
-}
-
 #piechart{
     position: relative;
     left: -30px;
@@ -284,14 +272,26 @@ div.polaroid_visualization {
 }
 
 #visualization{
-    display:none;
+    display:inline;
 }
 
 #visualization_holder{
     margin-top: 40px;
     width: 50%;
     height:400px;
+    float:left;
+    background-color: #F5F5F5;
+}
+
+#piechart_holder{
+    margin-top: 40px;
+    width: 50%;
+    height:400px;
     float:right;
+    z-index: 1;
+    position: absolute;
+    top: 0px;
+    left: 375px;
     background-color: #F5F5F5;
 }
 

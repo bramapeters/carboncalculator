@@ -257,10 +257,10 @@ var json = {
                 }, {
                     type: "radiogroup",
                     name: "car_type",
-                    title: "What type of car do you normally drive?",
+                    title: "What type of car do you normally travel in?",
                     isRequired: true,
                     choices: [
-                        "Electric", "Petrol", "Diesel"
+                        "Electric", "Petrol", "Diesel", "I never travel by car"
                     ],
                     colCount: 0
                 }, {
