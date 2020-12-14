@@ -637,6 +637,7 @@ function showVisualization(emission_total) {
 
     // Randomize for one out of three visualizations
     var random_number = Math.floor(Math.random() * 3) + 1
+    random_number = 2
     if (random_number == 1) {
         // Globe visualization
         if (emission_total < 3900){
@@ -665,7 +666,27 @@ function showVisualization(emission_total) {
         document.getElementById("image_visualization").style.display = "inline";
     } else if (random_number == 2) {
         // Numerical visualization
-        verification_code = "NV_" + Math.round(emission_total)
+        if (emission_total < 3900){
+            verification_code = "NV_1";
+        } else if (emission_total >= 3900 && emission_total < 6800){
+            verification_code = "NV_2";
+        } else if (emission_total >= 6800 && emission_total < 9700){
+            verification_code = "NV_3";
+        } else if (emission_total >= 9700 && emission_total < 12600){
+            verification_code = "NV_4";
+        } else if (emission_total >= 12600 && emission_total < 15500){
+            verification_code = "NV_5";
+        } else if (emission_total >= 15500 && emission_total < 18400){
+            verification_code = "NV_6";
+        } else if (emission_total >= 18400 && emission_total < 21300){
+            verification_code = "NV_7";
+        } else if (emission_total >= 21300 && emission_total < 24200){
+            verification_code = "NV_8";
+        } else if (emission_total >= 24200 && emission_total < 27100){
+            verification_code = "NV_9";
+        } else if (emission_total >= 27100){
+            verification_code = "NV_10";
+        }
         document.getElementById("verification_code").innerText = "VERIFICATION CODE: " + verification_code
         document.getElementById("numerical_text").innerHTML = "<b>" + emission_total + " kg CO<sub>2</sub></b>"
         document.getElementById("numerical_visualization").style.display = "inline";
