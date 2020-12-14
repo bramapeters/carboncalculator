@@ -134,7 +134,7 @@ var json = {
                 }, {
                     type: "bootstrapslider",
                     name: "household_size",
-                    title: "What is the size of your home (in M2)?",
+                    title: "What is the size of your home (in m2)?",
                     isRequired: true,
                     colCount: 0,
                     step: 1,
