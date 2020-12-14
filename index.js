@@ -246,9 +246,20 @@ var json = {
             "navigationTitle": "Travel",
             "elements": [
                 {
+                    type: "radiogroup",
+                    name: "car_travel",
+                    title: "Do you ever travel by car (i.e. even if you don't own one)?",
+                    isRequired: true,
+                    choices: [
+                        "Yes",
+                        "No"
+                    ],
+                    colCount: 0
+                }, {
                     type: "bootstrapslider",
                     name: "car_distance",
-                    title: "How many km do you travel by car each week (i.e. even if you don't own a car)? ",
+                    title: "How many km do you travel by car each week?",
+                    visibleIf: "{car_travel}='Yes'",
                     isRequired: true,
                     colCount: 0,
                     step: 1,
@@ -258,15 +269,17 @@ var json = {
                     type: "radiogroup",
                     name: "car_type",
                     title: "What type of car do you normally travel in?",
+                    visibleIf: "{car_travel}='Yes'",
                     isRequired: true,
                     choices: [
-                        "Electric", "Petrol", "Diesel", "I never travel by car"
+                        "Electric", "Petrol", "Diesel"
                     ],
                     colCount: 0
                 }, {
                     type: "radiogroup",
                     name: "car_share",
-                    title: "Do you mostly drive alone or share your car?",
+                    title: "Do you mostly drive alone or share a car?",
+                    visibleIf: "{car_travel}='Yes'",
                     isRequired: true,
                     choices: [
                         "Alone", "Share"
@@ -363,6 +376,7 @@ survey
         var food_meat = result.getValue("food_meat");
         var food_dairy = result.getValue("food_dairy");
         var food_vegetables = result.getValue("food_vegetables");
+        var car_travel = result.getValue("car_travel");
         var car_type = result.getValue("car_type");
         var car_share = result.getValue("car_share")
         var car_distance = result.getValue("car_distance");
@@ -373,7 +387,7 @@ survey
         var clothes_used = result.getValue("clothes_used");
         calcScore(household_number, household_type, household_heat, household_size, electricity_type,
             electricity_amount_1, electricity_amount_2, electricity_amount_3, electricity_amount_4, electricity_amount_5,
-            food_meat, food_dairy, food_vegetables, car_type, car_share, car_distance, train_distance, publictransport_distance,
+            food_meat, food_dairy, food_vegetables, car_travel, car_type, car_share, car_distance, train_distance, publictransport_distance,
             plane_distance, clothes_amount, clothes_used);
         document
             .querySelector('#surveyResult')
@@ -386,7 +400,7 @@ $("#surveyElement").Survey({model: survey});
 // Calculate carbon footprint score
 function calcScore(household_number, household_type, household_heat, household_size, electricity_type, electricity_amount_1,
                    electricity_amount_2, electricity_amount_3, electricity_amount_4, electricity_amount_5, food_meat, food_dairy,
-                   food_vegetables, car_type, car_share, car_distance, train_distance, publictransport_distance, plane_distance,
+                   food_vegetables, car_travel, car_type, car_share, car_distance, train_distance, publictransport_distance, plane_distance,
                    clothes_amount, clothes_used) {
 
     // Calculate household footprint
@@ -491,17 +505,21 @@ function calcScore(household_number, household_type, household_heat, household_s
 
     // Calculate car travel footprint
     var car_share_factor
-    if (car_share == "Alone") {
-        car_share_factor = 1
-    } else if (car_share == "Share") {
-        car_share_factor = 0.5
-    }
-    if (car_type == "Electric") {
-        emission_car = (car_distance / 100) * carbon_emission_electric * weeks_per_year * car_share_factor
-    } else if (car_type == "Petrol") {
-        emission_car = (car_distance * (6.5 / 100)) * carbon_emission_petrol * weeks_per_year * car_share_factor
-    } else if (car_type == "Diesel") {
-        emission_car = (car_distance * (5 / 100)) * carbon_emission_diesel * weeks_per_year * car_share_factor
+    if (car_travel == "Yes"){
+        if (car_share == "Alone") {
+            car_share_factor = 1
+        } else if (car_share == "Share") {
+            car_share_factor = 0.5
+        }
+        if (car_type == "Electric") {
+            emission_car = (car_distance / 100) * carbon_emission_electric * weeks_per_year * car_share_factor
+        } else if (car_type == "Petrol") {
+            emission_car = (car_distance * (6.5 / 100)) * carbon_emission_petrol * weeks_per_year * car_share_factor
+        } else if (car_type == "Diesel") {
+            emission_car = (car_distance * (5 / 100)) * carbon_emission_diesel * weeks_per_year * car_share_factor
+        }
+    } else if (car_travel == "No"){
+        emission_car = 0
     }
 
     // Calculate public transport footprint
