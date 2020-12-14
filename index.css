@@ -337,7 +337,7 @@ div.button_container_text {
 }
 
 #verification_code{
-    font-size: 10px;
+    font-size: 11px;
     margin-top: 10px;
     text-align: center;
 }
@@ -350,5 +350,5 @@ div.button_container_text {
     padding: 5px;
     color: white;
     border: none;
-    font-size:10px;
+    font-size:11px;
 }
