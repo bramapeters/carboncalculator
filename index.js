@@ -312,6 +312,7 @@ var json = {
                     isRequired: true,
                     colCount: 0,
                     choices: [
+                        "Less than 1 piece per quarter",
                         "1 piece per quarter",
                         "2 pieces per quarter",
                         "3 pieces per quarter",
@@ -511,7 +512,9 @@ function calcScore(household_number, household_type, household_heat, household_s
 
     // Calculate clothes footprint
     var clothes_pieces
-    if (clothes_amount == "1 piece per quarter") {
+    if (clothes_amount == "Less than 1 piece per quarter") {
+        clothes_pieces = 0.5
+    } else if (clothes_amount == "1 piece per quarter") {
         clothes_pieces = 1
     } else if (clothes_amount == "2 pieces per quarter") {
         clothes_pieces = 2
