@@ -265,10 +265,8 @@ div.polaroid_visualization {
 }
 
 #result_image {
-    width: 100%;
-    position: relative;
-    top: -20px;
-    left: -10px;
+    width: 110%;
+    height: 100%;
 }
 
 #visualization{
@@ -280,6 +278,7 @@ div.polaroid_visualization {
     width: 50%;
     height:400px;
     float:left;
+    overflow: visible;
     background-color: #F5F5F5;
 }
 
