@@ -1,4 +1,3 @@
-
 .navigationContainer {
     width: 100%;
     height: 110px;
@@ -68,6 +67,7 @@ div.container {
 .navigationProgressbar .pageDescription {
     color: black;
 }
+
 .navigationProgressbar li:before {
     width: 24px;
     height: 24px;
@@ -79,6 +79,7 @@ div.container {
     border-radius: 50%;
     background-color: #8dd9ca;
 }
+
 .navigationProgressbar li:after {
     width: 73%;
     height: 3px;
@@ -88,16 +89,20 @@ div.container {
     top: 15px;
     left: -36.5%;
 }
+
 .navigationProgressbar li:first-child:after {
     content: none;
 }
+
 .navigationProgressbar li.completed:before {
     border-color: #1ab394;
     background-color: #1ab394;
 }
+
 .navigationProgressbar li.completed + li:after {
     background-color: #8dd9ca;
 }
+
 .navigationProgressbar li.current:before {
     border-color: #1ab394;
     background-color: white;
@@ -130,6 +135,7 @@ html,body{
     margin: 0;
     padding: 0;
 }
+
 .fullwidth{
     width:100%;
     height: 100%;
